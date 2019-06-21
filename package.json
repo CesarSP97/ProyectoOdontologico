@@ -15,7 +15,7 @@
     "nodemon": "^1.19.1"
   },
   "description": "Aplicativo Web para Empresa Odontologica, con motor de plantillas \"hbs\"",
-  "main": "app.js",
+  "main": "./bin/www",
   "devDependencies": {},
   "repository": {
     "type": "git",
