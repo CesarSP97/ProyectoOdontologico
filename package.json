@@ -1,0 +1,30 @@
+{
+  "name": "proyectoodontologia",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "nodemon": "^1.19.1"
+  },
+  "description": "Aplicativo Web para Empresa Odontologica, con motor de plantillas \"hbs\"",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CesarSantin/ProyectoOdontologico.git"
+  },
+  "author": "Cesar Santin, Jhon Henao y Anthony Villalta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CesarSantin/ProyectoOdontologico/issues"
+  },
+  "homepage": "https://github.com/CesarSantin/ProyectoOdontologico#readme"
+}
