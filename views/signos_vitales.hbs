@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<!--
+        Arcana by HTML5 UP
+        html5up.net | @ajlkn
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+    <head>
+        <title>Registro</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              crossorigin="anonymous">
+        <!-- Plantilla -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
+
+    </head>
+
+    <body>
+        <div id="page-wrapper">
+
+            <!-- Header -->
+            <div id="header">
+
+                <!-- Logo -->
+                <h1><a id="logo"><em>HISTORIA CLINICA</em></a></h1>
+
+                <!-- Nav -->
+                <nav id="nav">
+                    <ul>
+                        <li><a href="/">Inicio</a></li>
+                        <li class="current">
+                            <a href="/registrar">Nuevo Paciente</a>
+                            <ul>
+                                <li><a href="#">Datos Personales</a></li>
+                                <li><a href="#">Examen Clinico</a>
+                                    <ul>
+                                        <li><a href="signos_vitales.hbs">Signos Vitales</a></li>
+                                        <li><a href="#">Examen Extraoral</a></li>
+                                        <li><a href="/odontograma">Odontograma</a></li>
+                                        <li><a href="#">Indice de Placa</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Diagnostico">Diagnostico</a></li>
+                                <li><a href="/plan_tratamiento">Plan de Tratamiento</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Edicion</a></li>
+                        <li><a href="#">Secuencia de Tratamiento</a></li>
+                        <li><a href="#">Pagos</a></li>
+                        <li><a href="#">Pacientes Consecutivos</a></li>
+                        <li><a href="#">Cuenta</a>
+                            <ul>
+                                <li><a href="/login">Iniciar Sesion</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Main -->
+            <section class="wrapper style1">
+                <div class="container">
+                    <form id="form_registro" name="form_registro" style="color: #333">
+                        <div id="error"> </div>
+                        <div>
+                            <center><h1><b>Examen Clinico</b></h1></center>
+                        </div>
+                        Nombres
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombres">
+                        </div>
+
+                        Apellidos
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input id="apellido" name="apellido" type="text" class="form-control" placeholder="Apellidos">
+                        </div>
+
+                        
+
+                        <div class="form-group">
+                            <input type="submit" value="Registrar" class="btn float-right login_btn">
+                        </div>
+                    </form>
+            </section>
+
+            <!-- Footer -->
+            <div id="footer">
+                <div class="container">
+                    <div class="row"></div>
+                </div>
+                
+
+                <!-- Copyright -->
+                <div class="copyright">
+                    <ul class="menu">
+                        <li>&copy; Untitled. All rights reserved</li>
+                        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                    </ul> 
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+    </body>
+
+</html>
