@@ -28,7 +28,7 @@
             <div class="d-flex justify-content-center h-100"  style="margin-top: 5%">
                 <div class="card">
                     <div class="card-header">
-                        <h3 style="margin-top: 10%">Registro de Medicos </h3>
+                        <h3 style="margin-top: 10%">Registro de Usuarios </h3>
                         <div class="d-flex justify-content-end social_icon">
                             <span><i class="fab fa-facebook-square"></i></span>
                             <span><i class="fab fa-google-plus-square"></i></span>
@@ -36,15 +36,24 @@
                         </div>
                     </div>
                     <div class="card-body" >
-                        <form id="form_registro" name="form_registro" style="color: white">
+                        <form id="form_registro" name="form_registro" style="color:#1f1f1f">
                             <div id="error" > </div>
 
-                            Nombre y Apellido
+                            Nombre
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
                                 <input id="nombres" name="nombres" type="text" class="form-control" placeholder="Nombres ">
+
+                            </div>
+
+                            Apellido
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <input id="apellido" name="apellido" type="text" class="form-control" placeholder="Apellido ">
 
                             </div>
 
@@ -57,13 +66,6 @@
 
                             </div>
 
-                            Especialidad
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <Select id="especialidad" name="especialidad" class="form-control"></select>
-                            </div>
                             Correo Electronico
                             <div class="input-group form-group">                                
                                 <div class="input-group-prepend">
@@ -72,9 +74,22 @@
                                 <input id="correo" name="correo" type="text" class="form-control" placeholder="Correo Electronico">
                             </div>
 
-                            <div class="form-group">
-                                <input type="submit" value="Registrarse" class="btn float-right login_btn">
+                            Funcion
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                                <Select id="funcion" name="funcion" class="form-control">
+                                    <option value="Odontologo">Odontologo</option> 
+                                    <option value="Secretaria" selected>Secretaria</option>
+                                </select>
                             </div>
+                            
+                            <center>
+                            <div class="form-group">
+                                <input type="submit" value="Registrarse" class="btn btn-success">
+                            </div>
+                            </center>
                         </form>
                     </div>
                     <div class="card-footer">
