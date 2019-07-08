@@ -1,4 +1,7 @@
 module.exports = function (sequelize, Sequelize) {
+    var historia_clinica = require('./historia_clinica');
+    var Historia_clinica = new historia_clinica(sequelize, Sequelize);
+    
     var Examen_extraoral = sequelize.define('examen_extraoral', {
         id: {
             autoIncrement: true,
@@ -44,6 +47,10 @@ module.exports = function (sequelize, Sequelize) {
         }
 
     }, {freezeTableName: true, timestamps: false});
+    
+    Examen_extraoral.belongsTo(Historia_clinica, {
+        foreignKey: 'idHistoria_clinica',
+        constraints: false});
     
     return Examen_extraoral;
 };

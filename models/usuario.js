@@ -1,6 +1,7 @@
 module.exports = function (sequelize, Sequelize) {
     var rol = require('./rol');
     var Rol = new rol(sequelize, Sequelize);
+    
     var Usuario = sequelize.define('usuario', {
         id: {
             autoIncrement: true,

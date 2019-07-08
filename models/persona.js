@@ -1,4 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
+    var usuario = require('./usuario');
+    var Usuario = new usuario(sequelize, Sequelize);
     var Persona = sequelize.define('persona', {
         id: {
             autoIncrement: true,
@@ -77,5 +79,14 @@ module.exports = function (sequelize, Sequelize) {
         }
         
     }, {freezeTableName: true, timestamps: false});
+    Persona.belongsTo(Usuario, {
+        foreignKey: 'idUsuario'
+    });
+    
+    Persona.associate = function (models) {
+        models.hasMany(models.historia_clinica, {
+            foreignKey: 'idPersona'
+        });
+    };
     return Persona;
 };
