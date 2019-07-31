@@ -188,7 +188,8 @@ input, select, textarea {
 	.container {
 		margin: 0 auto;
 		max-width: 100%;
-		width: 1400px;
+		/*width: 1400px;*/
+                width: 100%;
 	}
 
 		@media screen and (max-width: 1680px) {
@@ -2515,7 +2516,7 @@ input, select, textarea {
 
 	#header {
 		text-align: center;
-		padding: 3em 0 0 0;
+		padding: 0em 0 0 0;
 		background-color: #fff;
 		background-image: url("images/bg02.png"), url("images/bg02.png"), url("images/bg01.png");
 		background-position: top left,					top left,					top left;
@@ -2741,7 +2742,7 @@ input, select, textarea {
 
 	#cta {
 		text-align: center;
-		padding: 3.5em 0;
+		padding: 1.5em 0;
 	}
 
 		#cta header h2 {
@@ -2758,7 +2759,7 @@ input, select, textarea {
 /* Footer */
 
 	#footer {
-		padding: 4em 0 8em 0;
+		padding: 1em 0 1em 0;
 	}
 
 		#footer a {

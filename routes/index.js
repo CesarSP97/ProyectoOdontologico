@@ -6,6 +6,10 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Pagina Principal'});
 });
 
+router.get('/Odontologia', function(req, res, next) {
+  res.render('Odontologia', { title: 'Odontologia'});
+});
+
 router.get('/DatosPersonales', function(req, res, next) {
   res.render('DatosPersonales', { title: 'Datos Personales'});
 });
