@@ -1,104 +1,64 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+
     <head>
-        <title>Registrarse</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <!-- Plantilla -->        
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-        <link href="../public/css/registro.css" rel="stylesheet" type="text/css"/>
-        <!--=====================Funciones===============================================================-->
-        <script src="../js/funciones.js" type="text/javascript"></script>
-        <!--=====================Validaciones=================================================================-->
-        <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
-
-        <style>
-            label.error { float: none; color: #e5e5e5; padding-left: .5em; vertical-align: middle; font-size: 12px; }
-        </style>
-
+        <title>{{title}}</title>
+        <!-- Meta-Tags -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta name="keywords" content="Elite login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+        
+        <!-- //Meta-Tags -->
+        <!-- Stylesheets -->
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/registro.css" rel='stylesheet' type='text/css' />
+        <!--// Stylesheets -->
+        <!--fonts-->
+        <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+        <!--//fonts-->
     </head>
 
-    <body style="background-image: url('http://static.websguru.com.ar/var/m_6/69/69c/111154/1530481-Sonrie-Odontologia-Integral-banner.jpg')">
-        <div class="container">
-            <div class="d-flex justify-content-center h-100"  style="margin-top: 5%">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 style="margin-top: 10%">Registro de Usuarios </h3>
-                        <div class="d-flex justify-content-end social_icon">
-                            <span><i class="fab fa-facebook-square"></i></span>
-                            <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                        </div>
-                    </div>
-                    <div class="card-body" >
-                        <form id="form_registro" name="form_registro" style="color:#1f1f1f">
-                            <div id="error" > </div>
-
-                            Nombre
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="nombres" name="nombres" type="text" class="form-control" placeholder="Nombres">
-
-                            </div>
-
-                            Apellido
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="apellido" name="apellido" type="text" class="form-control" placeholder="Apellido ">
-
-                            </div>
-
-                            Cedula
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="cedula" name="cedula" type="text" class="form-control" placeholder="Cedula">
-
-                            </div>
-
-                            Correo Electronico
-                            <div class="input-group form-group">                                
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                </div>
-                                <input id="correo" name="correo" type="text" class="form-control" placeholder="Correo Electronico">
-                            </div>
-
-                            Funcion
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <Select id="funcion" name="funcion" class="form-control">
-                                    <option id="odontologo" value="Odontologo">Odontologo(a)</option> 
-                                    <option id="secretario" value="Secretaria" selected>Secretario(a)</option>
-                                </select>
-                            </div>
-                            
-                            <center>
-                            <div class="form-group">
-                                <input type="submit" value="Registrarse" >
-                            </div>
-                            </center>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
-                            Ya tengo cuenta?<a href="/login"  style="color: #FFC312">Iniciar</a>
-                        </div>
-                    </div>
+    <body>
+        <h1>Registrate</h1>
+        <div class="w3ls-login">
+            <!-- form starts here -->
+            <form action="#" method="post">
+                <div class="w3ls-login  w3l-sub" style="font-size: x-large; margin-bottom: 15px">DATOS PERSONALES</div>
+                <div class="agile-field-txt">
+                    <label>
+                        <i class="fa fa-user" aria-hidden="true"></i> Nombre :</label>
+                        <input type="text" id="nombre" name="nombre" placeholder=" " required="" />
                 </div>
-            </div>
+                <div class="agile-field-txt">
+                    <label>
+                        <i class="fa fa-user" aria-hidden="true"></i> Apellido :</label>
+                        <input type="text" id="apellido" name="apellido" placeholder=" " required="" />
+                </div>
+                <div class="agile-field-txt">
+                    <label>
+                        <i class="fa fa-user" aria-hidden="true"></i> Cedula :</label>
+                        <input type="text" id="cedula" name="cedula" placeholder=" " required="" />
+                </div>
+                <div class="w3ls-login  w3l-sub" style="font-size: x-large; margin-bottom: 15px">DATOS DE CUENTA</div>
+                <div class="agile-field-txt">
+                    <label>
+                        <i class="fa fa-user" aria-hidden="true"></i> Correo :</label>
+                        <input type="text" id="correo" name="correo" placeholder=" " required="" />
+                </div>
+                <div class="agile-field-txt">
+                    <label>
+                        <i class="fa fa-lock" aria-hidden="true"></i> Clave :</label>
+                    
+                        <input type="password" id="clave" name="clave" placeholder=" " required=""/>
+                </div>
+                
+                <div class="w3ls-login  w3l-sub">
+                    <input type="submit" value="Registrar">
+                    <a href="/login">Tienes cuenta? Clik Aqui!</a>
+                </div>
+            </form>
         </div>
+
     </body>
+
 </html>

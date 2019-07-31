@@ -1,71 +1,59 @@
+
 <!DOCTYPE html>
-<html>
-    <head>
-        <title> Inicio de Secion </title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
-        <!-- Plantilla -->        
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous"/>
-        <link href="../css/login.css" rel="stylesheet" type="text/css"/>
-        <!--=====================Funciones===============================================================-->
-        <script src="../js/funciones.js" type="text/javascript"></script>
-        <!--=====================Validaciones=================================================================-->
-        <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+<html lang="en">
 
-        <style>
-            label.error { float: none; color: #e5e5e5; padding-left: .5em; vertical-align: middle; font-size: 12px; }
-        </style>
-        
-    </head>
-    <body style="background-image: url('http://static.websguru.com.ar/var/m_6/69/69c/111154/1530481-Sonrie-Odontologia-Integral-banner.jpg');">
-        <div class="container">
-            <div class="d-flex justify-content-center h-100" >
-                <div class="card" style="margin-top: 15%">
+<head>
+    <title>Inicio de Sesion</title>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, 
+		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
+    />
+    <!-- /meta tags -->
+    <!-- custom style sheet -->
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <!-- /custom style sheet -->
+    <!-- fontawesome css -->
+    <link href="css/fontawesome-all.css" rel="stylesheet" />
+    <!-- /fontawesome css -->
+    <!-- google fonts-->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <!-- /google fonts-->
+</head>
 
-                    <div class="card-header">
-                        <center><h3 style="margin-top: 10%">Inicio de Sesion </h3></center>
-                        <div class="d-flex justify-content-end social_icon">
-                            <span><i class="fab fa-facebook-square"></i></span>
-                            <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                        </div>
-                    </div>
-                    <form id="form_inicio" name="form_inicio">
-                        <div id="error" > </div>
-                        <div class="card-body">
-                            <div class="input-group form-group">
+<body>
+    <h1>Bienvenido</h1>
+    <div class=" w3l-login-form">
+        <h2>Inicie Sesion Aqui</h2>
+        <form action="#" method="POST">
 
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                </div>
-                                <input id="correo" name="correo" type="text" class="form-control" placeholder="Correo Electronico">
-                            </div>
-
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                </div>
-                                <input id="clave" name="clave" type="password" class="form-control" placeholder="Clave">
-                            </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Ingresar" class="btn float-right login_btn">
-                            </div>
-
-                        </div>
-                    </form>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
-                            No tengo cuenta?<a href="/registro" style="color: #FFC312">Registrarse</a>
-                        </div>
-                    </div>
-
+            <div class=" w3l-form-group">
+                <label>Correo</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" placeholder="Correo Electronico" required="required"/>
                 </div>
             </div>
-        </div>
-    </body>
+            <div class=" w3l-form-group">
+                <label>Clave</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" class="form-control" placeholder="Clave" required="required"/>
+                </div>
+            </div>
+            <div class="forgot">
+                <p><input type="checkbox">Recordarme</p>
+            </div>
+            <button type="submit">Iniciar Sesion</button>
+        </form>
+        <p class=" w3l-register-p">No tienes una cuenta?<a href="registro" class="register"> Registrate</a></p>
+    </div>
+    <footer>
+        <p class="copyright-agileinfo"> &copy; UNL. Todos los derechos reservados | Creado por: <a href="http://unl.edu.ec">UNL</a></p>
+    </footer>
+
+</body>
+
 </html>
