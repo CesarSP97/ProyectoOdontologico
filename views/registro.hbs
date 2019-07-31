@@ -8,6 +8,12 @@
         <meta charset="utf-8">
         <meta name="keywords" content="Elite login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
         
+        <!--=====================Validaciones=================================================================-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+        <script src="../js/funciones.js" type="text/javascript"></script>
+
         <!-- //Meta-Tags -->
         <!-- Stylesheets -->
         <link href="css/font-awesome.css" rel="stylesheet">
@@ -22,7 +28,7 @@
         <h1>Registrate</h1>
         <div class="w3ls-login">
             <!-- form starts here -->
-            <form action="#" method="post">
+            <form action="#" method="post" id="registrar">
                 <div class="w3ls-login  w3l-sub" style="font-size: x-large; margin-bottom: 15px">DATOS PERSONALES</div>
                 <div class="agile-field-txt">
                     <label>
@@ -60,5 +66,55 @@
         </div>
 
     </body>
+ <script>
+        function validacionRegistro() {
+            
+             $.validator.addMethod("cedula", function (value, element) {
+            return this.optional(element) || validarCedula(value);
+        }, "Ingrese una cedula valida ");
+        
+            $("#registrar").validate({
+                rules: {
+                    nombre: {
+                        required: true
+                    },
+                    apellido: {
+                        required: true
+                    },
+                    cedula: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                    number: true,
+                    cedula: true
+                    },
+                    correo:{
+                        required: true,
+                        email: true,
+                        minlength: 8,
+                        maxlength: 80
+                    },
+                    clave:{
+                        required: true
+                    }
+                },
+                messages: {
+                    nombres:{required:'Este campo es obligatorio'},
+                    apellido:{required:'Este campo es obligatorio'},
+                    cedula:{required:'Este campo es obligatorio'},
+                    correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto', minlength: 'El minimo permitido es 8 caracteres', maxlength: 'El maximo permitido son 80 caracteres'},
+                    clave: {required: 'Este campo es obligatorio'}
+                }
 
+            }
+
+            );
+        }
+
+        $(document).ready(function () {
+            validacionRegistro();
+        });
+    </script> 
+
+    
 </html>

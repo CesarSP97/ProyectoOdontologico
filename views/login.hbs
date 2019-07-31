@@ -2,58 +2,87 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>Inicio de Sesion</title>
-    <!-- meta tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, 
-		Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
-    />
-    <!-- /meta tags -->
-    <!-- custom style sheet -->
-    <link href="css/login.css" rel="stylesheet" type="text/css" />
-    <!-- /custom style sheet -->
-    <!-- fontawesome css -->
-    <link href="css/fontawesome-all.css" rel="stylesheet" />
-    <!-- /fontawesome css -->
-    <!-- google fonts-->
-    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <!-- /google fonts-->
-</head>
+    <head>
+        <title>Inicio de Sesion</title>
+        <!-- meta tags -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Art Sign Up Form Responsive Widget, Audio and Video players, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, 
+              Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design"
+              />
+        <!--=====================Validaciones=================================================================-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+        <!-- /meta tags -->
+        <!-- custom style sheet -->
+        <link href="css/login.css" rel="stylesheet" type="text/css" />
+        <!-- /custom style sheet -->
+        <!-- fontawesome css -->
+        <link href="css/fontawesome-all.css" rel="stylesheet" />
+        <!-- /fontawesome css -->
+        <!-- google fonts-->
+        <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+              rel="stylesheet">
+        <!-- /google fonts-->
+        <script>
+            function validacionInicio() {
+                $("#inicio").validate({
+                    rules: {
+                        correo: {
+                            required: true,
+                            email: true,
+                            minlength: 8,
+                            maxlength: 80
+                        },
+                        clave: {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto', minlength: 'El minimo permitido es 8 caracteres', maxlength: 'El maximo permitido son 80 caracteres'},
+                        clave: {required: 'Este campo es obligatorio'}
+                    }
+                });
+            }
+            $(document).ready(function () {
+                console.log("ella no me ama");
+                validacionInicio();
+            });
+        </script>
+    </head>
 
-<body>
-    <h1>Bienvenido</h1>
-    <div class=" w3l-login-form">
-        <h2>Inicie Sesion Aqui</h2>
-        <form action="#" method="POST">
+    <body>
+        <h1>Bienvenido</h1>
+        <div class=" w3l-login-form">
+            <h2>Inicie Sesion Aqui</h2>
+            <form action="#" method="POST" id="inicio" name="inicio">
 
-            <div class=" w3l-form-group">
-                <label>Correo</label>
-                <div class="group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" class="form-control" placeholder="Correo Electronico" required="required"/>
+                <div class=" w3l-form-group">
+                    <label>Correo</label>
+                    <div class="group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="correo" name="correo" class="form-control" placeholder="Correo Electronico"/>
+                    </div>
                 </div>
-            </div>
-            <div class=" w3l-form-group">
-                <label>Clave</label>
-                <div class="group">
-                    <i class="fas fa-unlock"></i>
-                    <input type="password" class="form-control" placeholder="Clave" required="required"/>
+                <div class=" w3l-form-group">
+                    <label>Clave</label>
+                    <div class="group">
+                        <i class="fas fa-unlock"></i>
+                        <input type="password" id="clave" name="clave" class="form-control" placeholder="Clave"/>
+                    </div>
                 </div>
-            </div>
-            <div class="forgot">
-                <p><input type="checkbox">Recordarme</p>
-            </div>
-            <button type="submit">Iniciar Sesion</button>
-        </form>
-        <p class=" w3l-register-p">No tienes una cuenta?<a href="registro" class="register"> Registrate</a></p>
-    </div>
-    <footer>
-        <p class="copyright-agileinfo"> &copy; UNL. Todos los derechos reservados | Creado por: <a href="http://unl.edu.ec">UNL</a></p>
-    </footer>
+                <div class="forgot">
+                    <p><input type="checkbox">Recordarme</p>
+                </div>
+                <button type="submit">Iniciar Sesion</button>
+            </form>
+            <p class=" w3l-register-p">No tienes una cuenta?<a href="registro" class="register"> Registrate</a></p>
+        </div>
+        <footer>
+            <p class="copyright-agileinfo"> &copy; UNL. Todos los derechos reservados | Creado por: <a href="http://unl.edu.ec">UNL</a></p>
+        </footer>
 
-</body>
+    </body>
 
 </html>
