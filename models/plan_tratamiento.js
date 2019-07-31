@@ -1,22 +1,33 @@
-module.exports = function (sequelize, Sequelize) {
-    var historia_clinica = require('./historia_clinica');
-    var Historia_clinica = new historia_clinica(sequelize, Sequelize);
+'use strict';
+module.exports = (sequelize, DataTypes)=> {
     
-    var Plan_tratamiento = sequelize.define('plan_tratamiento', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)
+    const plan_tratamiento = sequelize.define('plan_tratamiento', {
+        
+        tratamiento: {
+            type: DataTypes.STRING(500)
         },
-
-        plan_tratamiento: {
-            type: Sequelize.STRING(500)
+        precio:{
+            type: DataTypes.DECIMAL
+        },
+        descuento:{
+            type: DataTypes.INTEGER
+        },
+        total: {
+            type: DataTypes.DECIMAL
+        },
+        external_id:{
+            type: DataTypes.UUID
         }
 
-    }, {freezeTableName: true, timestamps: false});
-    Plan_tratamiento.belongsTo(Historia_clinica, {
-        foreignKey: 'idHistoria_clinica',
-        constraints: false});
-    return Plan_tratamiento;
+    }, {freezeTableName: true});
+    
+    plan_tratamiento.associate = function (models) {
+
+    plan_tratamiento.belongsTo(models.historia_clinica, {foreignkey: 'id_historia_clinica'});
+
+    };
+    
+    
+    return plan_tratamiento;
 };
 

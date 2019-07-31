@@ -1,21 +1,11 @@
-
-module.exports = function (sequelize, Sequelize) {
-    var Rol = sequelize.define('rol', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)
-        },
-
-        rol: {
-            type: Sequelize.STRING(45)
-        }
-
-    }, {freezeTableName: true, timestamps: false});
-    Rol.associate = function (models) {
-        models.rol.hasMany(models.usuario, {
-            foreignKey: 'idRol'
-        });
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+    const rol = sequelize.define('rol', {
+        nombre: DataTypes.STRING(40)
+    }, {freezeTableName: true});
+    rol.associate = function (models) {
+        // associations can be defined here
+        rol.hasMany(models.usuario, {foreignkey: 'id_rol', as: 'usuario'});
     };
-    return Rol;
+    return rol;
 };

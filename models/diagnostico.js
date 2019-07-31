@@ -1,23 +1,23 @@
-module.exports = function (sequelize, Sequelize) {
-    var historia_clinica = require('./historia_clinica');
-    var Historia_clinica = new historia_clinica(sequelize, Sequelize);
+'use strict';
+module.exports = (sequelize, DataTypes) => {
     
-    var Diagnostico = sequelize.define('diagnostico', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)
+    const diagnostico = sequelize.define('diagnostico', {
+       
+        diagnostico_medico: {
+            type: DataTypes.STRING(500)
         },
-
-        diagnostico: {
-            type: Sequelize.STRING(500)
+        externa_id:{
+            type: DataTypes.UUID
         }
 
-    }, {freezeTableName: true, timestamps: false});
+    }, {freezeTableName: true});
     
-    Diagnostico.belongsTo(Historia_clinica, {
-        foreignKey: 'idHistoria_clinica'
-    });
-    
-    return Diagnostico;
+    diagnostico.associate = function(models){
+          
+        diagnostico.belongsTo(models.historia_clinica, {foreignkey: 'id_historia_clinica'});
+        
+          
+      };
+     
+    return diagnostico;
 };

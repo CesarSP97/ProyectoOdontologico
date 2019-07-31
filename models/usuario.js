@@ -1,32 +1,37 @@
-module.exports = function (sequelize, Sequelize) {
-    var rol = require('./rol');
-    var Rol = new rol(sequelize, Sequelize);
-    
-    var Usuario = sequelize.define('usuario', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)},
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+
+    const usuario = sequelize.define('usuario', {
+
         nombre: {
-            type: Sequelize.STRING(50)},
+            type: DataTypes.STRING(50)},
         apellido: {
-            type: Sequelize.STRING(50)},
+            type: DataTypes.STRING(50)},
         cedula: {
-            type: Sequelize.STRING(10),
+            type: DataTypes.STRING(10),
             allowNull: false,
             unique: true},
         correo: {
-            type: Sequelize.STRING(30),
+            type: DataTypes.STRING(30),
             unique: true
+        },
+        clave: {
+            type: DataTypes.STRING
+        },
+        externa_id: {
+            type: DataTypes.UUID
         }
-        
-    }, {freezeTableName: true,
-        createdAt: "fecha_registro",
-        updateAt: 'fecha_modificacion'});
-    Usuario.belongsTo(Rol, {
-        foreignKey: 'idRol',
-        constraints: false});
-    return Usuario;
+
+    }, {freezeTableName: true});
+
+    usuario.associate = function (models) {
+
+        usuario.belongsTo(models.rol, {foreignkey: 'id_rol'});
+        usuario.hasMany(models.persona, {foreignkey: 'id_usuario', as: 'persona'});
+
+    };
+
+    return usuario;
 };
 
 

@@ -1,21 +1,24 @@
-module.exports = function (sequelize, Sequelize) {
-    var cita = require('./cita');
-    var Cita = new cita(sequelize, Sequelize);
-    var Pago_cita = sequelize.define('pagos', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)
-        },
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+    
+    const pago_cita = sequelize.define('pagos', {
+        
         saldo:{
-            type: Sequelize.DECIMAL(45)
+            type: DataTypes.DECIMAL
+        },
+        external_id: {
+            type: DataTypes.UUID
         }
 
-    }, {freezeTableName: true, timestamps: false});
-    Pago_cita.belongsTo(Cita, {
-        foreignKey: 'idCita',
-        constraints: false});
-    return Pago_cita;
+    }, {freezeTableName: true});
+    
+    pago_cita.associate = function(models){
+          
+       pago_cita.belongsTo(models.cita, {foreignkey: 'id_cita'});
+          
+      };
+    
+    return pago_cita;
 };
 
 

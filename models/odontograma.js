@@ -1,21 +1,21 @@
-module.exports = function (sequelize, Sequelize) {
-    var historia_clinica = require('./historia_clinica');
-    var Historia_clinica = new historia_clinica(sequelize, Sequelize);
-    
-    var Odontograma = sequelize.define('odontograma', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)
-        },
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  
+    const odontograma = sequelize.define('odontograma', {
+        
+        external_id: {
+            type: DataTypes.UUID
+        }
 
-
-    }, {freezeTableName: true, timestamps: false});
+    }, {freezeTableName: true});
     
-    Odontograma.belongsTo(Historia_clinica, {
-        foreignKey: 'idHistoria_clinica'
-    });
+        odontograma.associate = function(models){
+          
+        odontograma.belongsTo(models.historia_clinica, {foreignkey: 'id_historia_clinica'});
+        
+      };
     
-    return Odontograma;
+    
+    return odontograma;
 };
 

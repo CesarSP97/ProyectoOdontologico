@@ -12,7 +12,10 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
-    "nodemon": "^1.19.1"
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.1",
+    "sequelize": "^5.12.1",
+    "sequelize-cli": "^5.5.0"
   },
   "description": "Aplicativo Web para Empresa Odontologica, con motor de plantillas \"hbs\"",
   "main": "./bin/www",

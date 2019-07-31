@@ -1,35 +1,22 @@
-module.exports = function (sequelize, Sequelize) {
-    var persona = require('./persona');
-    var Persona = new persona(sequelize, Sequelize);
-    var Cita = sequelize.define('cita', {
-        id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER(6)
-        },
-        calendario_citas:{
-            type:Sequelize.DATE
-        },
-        fecha:{
-            type:Sequelize.DATE
-        },
-        hora:{
-            type:Sequelize.TIMESTAMPS
-        }
+'use strict';
+module.exports = (sequelize, DataTypes) => {
 
-        
-    }, {freezeTableName: true, timestamps: false});
-    
-    Cita.belongsTo(Persona, {
-        foreignKey: 'idPersona'
-    });
-    
-    Cita.associate = function (models) {
-        models.hasMany(models.pago_cita, {
-            foreignKey: 'idCita'
-        });
+    const cita = sequelize.define('cita', {
+
+        calendario_citas: DataTypes.DATEONLY,
+        fecha: DataTypes.DATEONLY,
+        hora: DataTypes.DATE,
+        externa_id: DataTypes.UUID
+
+    }, {freezeTableName: true});
+
+    cita.associate = function (models) {
+
+        cita.belongsTo(models.persona, {foreignkey: 'id_persona'});
+        cita.hasMany(models.secuencia_tratamiento, {foreignkey: 'id_cita', as: 'secuencia_tratamiento'});
+        cita.hasOne(models.pago_cita, {foreignkey: 'id_cita', as: 'pago_cita'});
+
     };
-    return Cita;
+
+    return cita;
 };
-
-

@@ -1,13 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+//Redireccionamiento de Vistas
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Pagina Principal'});
-});
-
-router.get('/Odontologia', function(req, res, next) {
-  res.render('Odontologia', { title: 'Odontologia'});
 });
 
 router.get('/DatosPersonales', function(req, res, next) {
@@ -24,6 +20,14 @@ router.get('/PlanDeTratamiento', function(req, res, next) {
 
 router.get('/odontograma', function(req, res, next) {
   res.render('odontograma', { title: 'Odontograma'});
+});
+
+router.get('/signos_vitales', function(req, res, next) {
+  res.render('signos_vitales', { title: 'Signos Vitales'});
+});
+
+router.get('/examen_extraoral', function(req, res, next) {
+  res.render('examen_extraoral', { title: 'Examen Extraoral'});
 });
 
 router.get('/login', function(req, res, next) {
