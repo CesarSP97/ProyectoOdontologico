@@ -3,7 +3,11 @@ var router = express.Router();
 
 //Redireccionamiento de Vistas
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Pagina Principal'});
+  res.render('index', { title: 'Pagina'});
+});
+
+router.get('/Odontologia', function(req, res, next) {
+  res.render('Odontologia', { title: 'Pagina Principal'});
 });
 
 router.get('/DatosPersonales', function(req, res, next) {
@@ -19,7 +23,7 @@ router.get('/PlanDeTratamiento', function(req, res, next) {
 });
 
 router.get('/odontograma', function(req, res, next) {
-  res.render('odontograma', { title: 'Odontograma'});
+  res.render('odontograma', { title: 'Odontograma',ocultar:'true'});
 });
 
 router.get('/signos_vitales', function(req, res, next) {
@@ -31,11 +35,11 @@ router.get('/examen_extraoral', function(req, res, next) {
 });
 
 router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Inicio de Sesion'});
+  res.render('login', { title: 'Inicio de Sesion',ocultar:'true'});
 });
 
 router.get('/registro', function(req, res, next) {
-  res.render('registro', { title: 'Registrar'});
+  res.render('registro', { title: 'Registrar',ocultar:'true'});
 });
 
 module.exports = router;

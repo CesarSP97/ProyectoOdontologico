@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    {{{body}}}
-  </body>
+
+<head>
+  <title>{{title}}</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="header">
+
+    <!-- Nav -->
+    {{#if ocultar}}
+    {{else}}
+    <nav id="nav">
+      <ul>
+        <li class="current"><a href="/Odontologia" id="logo">Principal</a></li>
+        <li>
+          <a href="#">Nuevo Paciente</a>
+          <ul>
+            <li><a href="/DatosPersonales">Datos Personales</a></li>
+            <li><a href="#">Examen Clinico</a>
+              <ul>
+                <li><a href="/signos_vitales">Signos Vitales</a></li>
+                <li><a href="/examen_extraoral">Examen Extraoral</a></li>
+                <li><a href="/odontograma">Odontograma</a></li>
+                <li><a href="#">Indice de Placa</a></li>
+              </ul>
+            </li>
+            <li><a href="/Diagnostico">Diagnostico</a></li>
+            <li><a href="/PlanDeTratamiento">Plan de Tratamiento</a></li>
+
+          </ul>
+        </li>
+        <li><a href="#">Edicion</a></li>
+        <li><a href="#">Secuencia de Tratamiento</a></li>
+        <li><a href="#">Pagos</a></li>
+        <li><a href="#">Pacientes Consecutivos</a></li>
+        <li><a href="#">Cuenta</a>
+          <!--MANEJAR CON UN IF EVALUANDO LA SESSION-->
+          <ul>
+            <li><a href="/login">Iniciar Sesion</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  {{/if}}
+  {{{body}}}
+</body>
+
 </html>
