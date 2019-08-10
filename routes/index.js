@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-
+var usuarioR = require('../controllers/usuario_controller');
+var usuarioR = new usuarioR();
 //Redireccionamiento de Vistas
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Pagina'});
@@ -38,8 +39,10 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Inicio de Sesion',ocultar:'true'});
 });
 
-router.get('/registro', function(req, res, next) {
+router.get('/registrarse', function(req, res, next) {
   res.render('registro', { title: 'Registrar',ocultar:'true'});
 });
+
+router.post('/registrarse', usuarioR.guardar);
 
 module.exports = router;
