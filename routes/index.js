@@ -1,7 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var usuarioR = require('../controllers/usuario_controller');
-var usuarioR = new usuarioR();
+var usuario = require('../controllers/usuario_controller');
+var Usuario = new usuario();
+var persona = require('../controllers/personaController');
+var Persona = new persona();
+var signos = require('../controllers/SignosVitalesController');
+var Signos = new signos();
+var examen = require('../controllers/ExamenExtraoralController');
+var Examen = new examen();
 //Redireccionamiento de Vistas
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Pagina'});
@@ -9,6 +15,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/Odontologia', function(req, res, next) {
   res.render('Odontologia', { title: 'Pagina Principal'});
+});
+
+router.get('/IndicePlaca', function(req, res, next) {
+  res.render('IndicePlaca', { title: 'Indice De Placa'});
 });
 
 router.get('/DatosPersonales', function(req, res, next) {
@@ -39,10 +49,13 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Inicio de Sesion',ocultar:'true'});
 });
 
-router.get('/registrarse', function(req, res, next) {
+router.get('/registro', function(req, res, next) {
   res.render('registro', { title: 'Registrar',ocultar:'true'});
 });
 
-router.post('/registrarse', usuarioR.guardar);
+router.post('/login', Usuario.guardar);
+router.post('/DatosPersonales', Persona.guardarpaciente);
+router.post('/signos_vitales', Signos.guardarsignos);
+router.post('/examen_extraoral', Examen.guardarexamen);
 
 module.exports = router;

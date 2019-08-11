@@ -1,25 +1,24 @@
 'use strict';
 var models = require('./../models/');
+var uuid = require('uuid');
 class UsuarioController {
     guardar(req, res) {
         var usuario = models.usuario;
-        console.log("Algo salio bien");
         var datos = {
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            cedula: req.body.cedula,
-            correo: req.body.correo,
-            clave: req.body.clave
+            nombre: req.body.nombres,
+            apellido: req.body.apellidos,
+            cedula: req.body.cedula,            
+            correo:req.body.correo,
+            external_id: uuid.v4(),
             
-        };
-        
-         console.log("Hasta aquiiiii");
-              
-        usuario.create(datos).then(function (result) {
-            console.log("Algo salio bien MAL");
-            res.redirect('/');
+            rol: {
+                nombre: req.body.rol 
+            }
+        };        
+        usuario.create(datos, {include: [{model: models.rol, as: 'rol'}]}).then(function (newcuenta) {            
+                console.log("Bien Henao");
+                res.redirect("/");
         });
-
     }
 
 }

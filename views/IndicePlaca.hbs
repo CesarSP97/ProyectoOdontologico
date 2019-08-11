@@ -34,39 +34,38 @@
                         <form id="form_registro" name="form_registro" style="color: #333; text-align: left" action="/signos_vitales" method="POST">
                             <div id="error"> </div>
                             <div>
-                                <center><h1><b>Signos Vitales</b></h1></center>
+                                <center><h1><b>Indice de Placa</b></h1></center>
                             </div>
-                            Precion Arterial
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="p_arterial" name="p_arterial" type="text" class="form-control" placeholder="Precion Arterial" required>
-                            </div>
-
-                            Temperatura
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="temperatura" name="temperatura" type="text" class="form-control" placeholder="Temperatura">
-                            </div>
-
-                            Frecuencia Cardiaca
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="f_cardiaca" name="f_cardiaca" type="number" class="form-control" placeholder="Frecuencia Cardiaca">
-                            </div>
-
-                            Respiraciones por Minuto
-                            <div class="input-group form-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                </div>
-                                <input id="rpm" name="rpm" type="text" class="form-control" placeholder="Respiraciones por Minuto">
-                            </div>
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                             <div class="form-group">
                                 <input type="submit" value="Guardar" class="btn float-right login_btn">
@@ -104,3 +103,4 @@
     </body>
 
 </html>
+

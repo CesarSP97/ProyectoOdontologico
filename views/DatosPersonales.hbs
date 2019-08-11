@@ -19,6 +19,20 @@
         <!-- Plantilla -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+
+                var now = new Date();
+
+                var day = ("0" + now.getDate()).slice(-2);
+                var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+                var today = now.getFullYear() + "-" + (month) + "-" + (day);
+                $("#f_actual").val(today);
+            });
+        </script>
     </head>
 
     <body>
@@ -32,8 +46,23 @@
                 <!-- Main -->
                 <section class="wrapper style1">
                     <div class="container">
-                        <form id="form_registro" name="form_registro" style="color: #333; text-align: left">
+                        <form id="form_registro" name="form_registro" style="color: #333; text-align: left" action="/DatosPersonales" method="POST">
                             <div id="error"> </div>
+
+                            <div style="padding: 1%; float: left; width: 45%; text-align: justify;" class="input-group form-group"><h2>Numero de Historia: </h2>
+                                <input id="n_historia" name="n_historia" type="text" class="form-control" readonly>
+                                <!--<input id="f_actual" name="f_actual" type="date" class="form-control" readonly>-->
+                            </div>
+                            
+                            <div style="padding: 1%; float: left; width: 45%; text-align: justify;" class="input-group form-group"><h2>Fecha: </h2> 
+                                <!--<input id="n_historia" name="n_historia" type="text" class="form-control" readonly>-->
+                                <input id="f_actual" name="f_actual" type="date" class="form-control" readonly>
+                            </div>
+                           
+                            <br>
+                            <br>
+                            <br>
+                            <br>
                             <div>
                                 <center><h1><b>Datos Personales</b></h1></center>
                             </div>
@@ -42,7 +71,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input id="nombre" name="nombre" type="text" class="form-control" placeholder="Nombres" required>
+                                <input id="nombres" name="nombres" type="text" class="form-control" placeholder="Nombres" required>
                             </div>
 
                             Apellidos
@@ -50,7 +79,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input id="apellido" name="apellido" type="text" class="form-control" placeholder="Apellidos">
+                                <input id="apellidos" name="apellidos" type="text" class="form-control" placeholder="Apellidos">
                             </div>
 
                             Edad
@@ -90,7 +119,7 @@
                                 </div>
                                 <input id="calleP" name="calleP" type="text" class="form-control" placeholder="Calle Principal">
                                 <input id="calleS" name="calleS" type="text" class="form-control" placeholder="Calle Secundaria">
-                                <input id="referencia" name="descripcion" type="text" class="form-control" placeholder="Referencia">
+                                <input id="referencia" name="referencia" type="text" class="form-control" placeholder="Referencia">
                             </div>
 
                             Correo Electronico:
@@ -242,7 +271,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Registrar" class="btn float-right login_btn">
+                                <input type="submit" value="Guardar" class="btn float-right login_btn">
                             </div>
                         </form>
                 </section>

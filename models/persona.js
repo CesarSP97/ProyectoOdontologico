@@ -3,6 +3,12 @@ module.exports = (sequelize, DataTypes) => {
     
     const persona = sequelize.define('persona', {
         
+        numero_historia: {
+            type : DataTypes.STRING
+        },
+        fecha_creacion:{
+            type: DataTypes.DATE
+        },
         nombres: {
             type: DataTypes.STRING(50)
         },
@@ -12,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
         edad: {
             type: DataTypes.INTEGER(4)
         },
+        genero:{
+            type: DataTypes.STRING
+        },
         fecha_nac: {
             type: DataTypes.DATE
         },
@@ -19,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(200)
         },
         telefono: {
+            type: DataTypes.STRING(20)
+        },
+        telefono_emer: {
             type: DataTypes.STRING(20)
         },
         correo: {

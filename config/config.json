@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "242016",
+    "username": "jhon",
+    "password": "elrey123",
     "database": "odontologia",
     "host": "127.0.0.1",
     "dialect": "mysql",
