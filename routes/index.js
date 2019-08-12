@@ -34,7 +34,7 @@ router.get('/PlanDeTratamiento', function(req, res, next) {
 });
 
 router.get('/odontograma', function(req, res, next) {
-  res.render('odontograma', { title: 'Odontograma',ocultar:'true'});
+  res.render('Odontograma', { title: 'Odontograma',ocultar:'true'});
 });
 
 router.get('/signos_vitales', function(req, res, next) {
