@@ -1,16 +1,19 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
 
-    const usuario = sequelize.define('usuario', {
+    const Usuario = sequelize.define('usuario', {
 
         nombre: {
-            type: DataTypes.STRING(50)},
+            type: DataTypes.STRING(50)
+        },
         apellido: {
-            type: DataTypes.STRING(50)},
+            type: DataTypes.STRING(50)
+        },
         cedula: {
             type: DataTypes.STRING(10),
             allowNull: false,
-            unique: true},
+            unique: true
+        },
         correo: {
             type: DataTypes.STRING(30),
             unique: true
@@ -22,16 +25,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.UUID
         }
 
-    }, {freezeTableName: true});
+    }, { freezeTableName: true });
 
-    usuario.associate = function (models) {
+    Usuario.associate = function(models) {
 
-        usuario.belongsTo(models.rol, {foreignkey: 'id_rol'});
-        usuario.hasMany(models.persona, {foreignkey: 'id_usuario', as: 'persona'});
+        Usuario.belongsTo(models.rol, { foreignkey: 'id_rol' });
+        Usuario.hasMany(models.persona, { foreignkey: 'id_usuario', as: 'persona' });
 
     };
 
-    return usuario;
+    return Usuario;
 };
-
-

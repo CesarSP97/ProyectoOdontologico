@@ -1,8 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    
+
     const examen_extraoral = sequelize.define('examen_extraoral', {
-        
+
         labios: {
             type: DataTypes.STRING(45)
         },
@@ -39,18 +39,17 @@ module.exports = (sequelize, DataTypes) => {
         ganglios: {
             type: DataTypes.STRING(45)
         },
-        externa_id:{
+        externa_id: {
             type: DataTypes.UUID
         }
 
-    }, {freezeTableName: true});
-    
-    examen_extraoral.associate = function(models){
-          
-        examen_extraoral.belongsTo(models.historia_clinica, {foreignkey: 'id_historia_clinica'});
-        
-      };
-     
+    }, { freezeTableName: true });
+
+    examen_extraoral.associate = function(models) {
+
+        examen_extraoral.belongsTo(models.historia_clinica, { foreignkey: 'id_historia_clinica' });
+
+    };
+
     return examen_extraoral;
 };
-

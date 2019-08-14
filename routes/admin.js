@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
     console.log("ok");
     var models = require('./../models');
     models.sequelize.sync().then(() => {
@@ -15,5 +15,6 @@ router.get('/', function (req, res, next) {
 });
 
 
+
+
 module.exports = router;
- 
