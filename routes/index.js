@@ -12,6 +12,20 @@ var diagnostico = require('../controllers/DiagnosticoController');
 var Diagnostico = new diagnostico();
 var plan = require('../controllers/PlanTratamientoController');
 var Plan = new plan();
+var cuenta = require('../controllers/CuentaController');
+var Cuenta = new cuenta();
+
+function verificar_inicio(req) {
+    return (req.session !== undefined && req.session.Cuenta !== undefined);
+}
+var auth = function (req, res, next) {
+    if (verificar_inicio(req)) {
+        next();
+    } else {
+        req.flash('error', 'Debes iniciar sesion primero!');
+        res.redirect('/login');
+    }
+};
 //Redireccionamiento de Vistas
 router.get('/', function (req, res, next) {
     res.render('index', {title: 'Pagina'});
@@ -52,18 +66,9 @@ router.get('/registro', function (req, res, next) {
 });
 
 //controlador de inicio de secion
-//function verificar_inicio(req) {
-//    return (req.session !== undefined && req.session.cuenta !== undefined);
-//}
-//var auth = function (req, res, next) {
-//    if (verificar_inicio(req)) {
-//        next();
-//    } else {
-//        req.flash('error', 'Debes iniciar sesion primero!');
-//        res.redirect('/login');
-//    }
-//};
 
+
+router.post('/inicio_sesion', Cuenta.iniciar_sesion);
 
 //guardar persona
 router.post('/login', Usuario.guardar);

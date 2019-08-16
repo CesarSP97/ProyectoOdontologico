@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
         historia_clinica.hasMany(models.examen_extraoral, {foreignkey:'id_historia_clinica', as:'examen_extraoral'});
         historia_clinica.hasMany(models.odontograma, {foreignkey:'id_historia_clinica', as:'odontograma'});
 
-
     };
 
     return historia_clinica;
