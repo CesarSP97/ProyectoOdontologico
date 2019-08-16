@@ -3,12 +3,6 @@ module.exports = (sequelize, DataTypes) => {
 
     const persona = sequelize.define('persona', {
 
-        numero_historia: {
-            type: DataTypes.STRING
-        },
-        fecha_creacion: {
-            type: DataTypes.DATE
-        },
         nombres: {
             type: DataTypes.STRING(50)
         },
@@ -92,9 +86,9 @@ module.exports = (sequelize, DataTypes) => {
 
     persona.associate = function(models) {
 
-        //persona.belongsTo(models.usuario, {foreignkey: 'id_usuario'});
-        //persona.hasMany(models.cita,{foreignkey:'id_persona', as:'cita'});
-        //persona.hasOne(models.historia_clinica, {foreignkey:'id_persona', as:'historia_clinica'});
+        persona.belongsTo(models.usuario, {foreignkey: 'id_usuario'});
+        persona.hasMany(models.cita,{foreignkey:'id_persona', as:'cita'});
+        persona.hasMany(models.historia_clinica, {foreignkey:'id_persona', as:'historia_clinica'});
 
     };
 

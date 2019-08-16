@@ -3,14 +3,20 @@ var models = require('./../models/');
 var uuid = require('uuid');
 class PersonaController {
     
+    visualizar(req, res) {
+        var persona = models.persona;
+        persona.findAll().then(function (lista) {
+            var index = 'HIS-' + (lista.length + 1);
+            res.render('DatosPersonales', { title: 'Datos Personales', nro: index});
+        });
+        
+    }
     guardarpaciente(req, res) {
         var persona = models.persona;
         var datosP = {
-            
-            numero_historia: req.body.n_historia,
-            fecha_creacion: req.body.f_actual,
+      
             nombres: req.body.nombres,
-            apellidos: req.body.apellidos,
+            Apellidos: req.body.apellidos,
             edad: req.body.edad,
             genero: req.body.genero,
             fecha_nac: req.body.f_nacimiento,
@@ -34,11 +40,19 @@ class PersonaController {
             enfermedades_cardicadas: req.body.enf_cardiaca,
             medicamentos: req.body.medicamentos,
             otros: req.body.otros,
-            external_id: uuid.v4()
-        };        
-        persona.create(datosP).then(function (newpersona) {            
-                console.log("Bien Henao");
-                res.redirect("/");
+            external_id: uuid.v4(),
+            //usuarioId:??
+            
+                historia_clinica:{
+                n_historia: req.body.n_historia,
+                fecha_creacion: req.body.f_actual,
+                external_id: uuid.v4()
+                }
+        };
+        console.log(datosP);
+        persona.create(datosP, { include: { model: models.historia_clinica, as: 'historia_clinica'}}).then(function(newperona) {
+           
+            res.redirect("/signos_vitales");
         });
     }
 

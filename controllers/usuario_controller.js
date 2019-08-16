@@ -10,7 +10,8 @@ class UsuarioController {
             apellido: req.body.apellido,
             cedula: req.body.cedula,
             correo: req.body.correo,
-            external_id: uuid.v4(),
+            clave: req.body.clave,
+            externa_id: uuid.v4(),
 
             rol: {
                 nombre: req.body.rol
@@ -18,7 +19,6 @@ class UsuarioController {
         };
         console.log(datos);
         usuario.create(datos, { include: [{ model: models.rol, as: 'rol' }] }).then(function(newcuenta) {
-            console.log("Bien Henao");
             res.redirect("/");
         });
     }

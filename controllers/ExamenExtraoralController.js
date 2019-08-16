@@ -19,11 +19,11 @@ class ExamenExtraoralController {
             ATM: req.body.atm,
             oro_faringue: req.body.o_faringue,
             ganglios: req.body.ganglios,            
-            external_id: uuid.v4()
+            externa_id: uuid.v4()
         };        
         examen.create(datosex).then(function (exa) {            
                 console.log("Bien Henao");
-                res.redirect("/");
+                res.redirect("/Odontograma");
         });
     }
 

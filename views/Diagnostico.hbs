@@ -1,62 +1,61 @@
 <!DOCTYPE HTML>
 <!--
-	Arcana by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+        Arcana by HTML5 UP
+        html5up.net | @ajlkn
+        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
 
-<head>
-	<title>Diagnostico</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-</head>
+    <head>
+        <title>Diagnostico</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
 
-<body class="is-preload">
-	<div id="page-wrapper">
-
-		<!-- Header -->
-		<div id="header">
-
-			<!-- Logo -->
-			<h1><a href="/Diagnostico" id="logo">Diagnostico<em></em></a></h1>
+    <body class="is-preload">
+        <div id="page-wrapper">
 
 
-		</div>
 
-		<!-- Main -->
-		<section class="wrapper style1">
-			<div class="container">
-				<textarea name="diagnostico" maxlength="400" rows="15" cols="40" placeholder="Escribe aqui..."></textarea>
-			</div>
-		</section>
+            <!-- Footer -->
+            <div id="footer">
+                <div class="container">
+                    <form id="registro_diag" name="registro_diag" action="/diagnostico" method="POST">
+                        <div id="header">
+                            <!-- Logo -->
+                            <h1><a id="logo">Diagnostico<em></em></a></h1>
+                        </div>
+                        <!-- Main -->
+                        <div>
+                            <textarea  id="diagnostico" name="diagnostico" maxlength="600" rows="15" cols="25" placeholder="Escribe aqui..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Guardar" class="btn float-right login_btn" style="float: right">
+                        </div>
+                    </form>
+                </div>
 
-		<!-- Footer -->
-		<div id="footer">
-			<div class="container">
-			</div>
+                <!-- Copyright -->
+                <div class="copyright">
+                    <ul class="menu">
+                        <li>&copy; UNL. Todos los derechos reservados</li>
+                        <li>Creado por</li>: <a href="http://www.unl.edu.ec/">UNL</a></li>
+                    </ul>
+                </div>
 
-			<!-- Copyright -->
-			<div class="copyright">
-				<ul class="menu">
-					<li>&copy; UNL. Todos los derechos reservados</li>
-					<li>Creado por</li>: <a href="http://www.unl.edu.ec/">UNL</a></li>
-				</ul>
-			</div>
+            </div>
 
-		</div>
+        </div>
 
-	</div>
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
-</body>
+    </body>
 
 </html>
