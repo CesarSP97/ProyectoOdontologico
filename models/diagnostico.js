@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
 
         diagnostico.belongsTo(models.historia_clinica, { foreignkey: 'id_historia_clinica' });
 
-
     };
 
     return diagnostico;

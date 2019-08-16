@@ -10,8 +10,6 @@ var examen = require('../controllers/ExamenExtraoralController');
 var Examen = new examen();
 var diagnostico = require('../controllers/DiagnosticoController');
 var Diagnostico = new diagnostico();
-var plan = require('../controllers/PlanTratamientoController');
-var Plan = new plan();
 var cuenta = require('../controllers/CuentaController');
 var Cuenta = new cuenta();
 
@@ -39,10 +37,6 @@ router.get('/DatosPersonales', Persona.visualizar);
 
 router.get('/Diagnostico', function (req, res, next) {
     res.render('Diagnostico', {title: 'Diagnostico'});
-});
-
-router.get('/PlanDeTratamiento', function (req, res, next) {
-    res.render('PlanDeTratamiento', {title: 'Plan De Tratamiento'});
 });
 
 router.get('/odontograma', function (req, res, next) {
@@ -76,6 +70,5 @@ router.post('/DatosPersonales', Persona.guardarpaciente);
 router.post('/signos_vitales', Signos.guardarsignos);
 router.post('/examen_extraoral', Examen.guardarexamen);
 router.post('/diagnostico', Diagnostico.guardarDiagnostico);
-router.post('/Plan', Plan.guardarPlanTratamiento);
 
 module.exports = router;

@@ -5,6 +5,7 @@ class UsuarioController {
     guardar(req, res) {
 
         var usuario = models.usuario;
+        
         var datos = {
             nombre: req.body.nombre,
             apellido: req.body.apellido,

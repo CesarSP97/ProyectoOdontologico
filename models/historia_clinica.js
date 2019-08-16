@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     historia_clinica.associate = function(models) {
 
         historia_clinica.belongsTo(models.persona, { foreignkey: 'id_persona' });
-        historia_clinica.hasMany(models.plan_tratamiento, {foreignkey:'id_historia_clinica', as:'plan_tratamiento'});
         historia_clinica.hasMany(models.diagnostico, {foreignkey:'id_historia_clinica', as:'diagnostico'});    
         historia_clinica.hasMany(models.signos_vitales, {foreignkey:'id_historia_clinica', as:'signos_vitales'});
         historia_clinica.hasMany(models.examen_extraoral, {foreignkey:'id_historia_clinica', as:'examen_extraoral'});
