@@ -15,6 +15,7 @@ var Cuenta = new cuenta();
 var rol = require('../controllers/RolController');
 var Rol = new rol();
 
+//controlador de inicio de secion
 function verificar_inicio(req) {
     return (req.session !== undefined && req.session.Cuenta !== undefined);
 }
@@ -63,11 +64,12 @@ router.get('/registro', function (req, res, next) {
 });
 
 router.get('/buscar', function (req, res, next) {
-    res.render('buscar', {title: 'Buscar', ocultar: 'true'});
+    res.render('buscar', {title: 'Buscar'});
 });
 
-//controlador de inicio de secion
-
+router.get('/admin', function (req, res, next) {
+    res.render('admin', {title: 'Administrador', ocultar: 'true'});
+});
 
 router.post('/inicio_sesion', Cuenta.iniciar_sesion);
 
