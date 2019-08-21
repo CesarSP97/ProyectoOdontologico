@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <!--=====================Validaciones=================================================================-->
+        <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <center><a style="font-size: 200%; te">Buscar Pacientes</a></center>
+            <br>
+            <form class="form-inline" method="GET" action="/buscar/paciente">
+                <select id="opcion" name="opcion" class="btn  btn-md   " style="background: #04B431"> 
+                    <option value="todos">Nombres</option>
+                    <option value="cedula">Numero de Historia Clinica</option>
+                    <option value="apellidos">Apellidos</option>
+                </select>
+                <input type="text"  id="texto" name="texto" class="btn  btn-md"  placeholder="Ingrese su dato a buscar">
+                <button type="submit" id="boton"  class="btn  btn-md" style="background: #FFC312; color: #202835" >Buscar</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <div>
+                <center>
+                    <label style="background: #FE2E2E">Listado de Pacientes</label>
+                </center>
+            </div>
+            <table id="tabla" class="table table-responsive table-bordered " style="color: #222">
+
+                <thead style="font-size: 20px">                                         
+                <th>Nro. de Historia</th>
+                <th>Paciente</th>
+                <th>Direccion</th>
+                <th>Habitos</th>
+                <th>Enfermedades</th>
+                <th>Hereditarias</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>{{datosP.usuario.n_historia}}</td>
+                        <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
+                        <td>{{ datosP.paciente.direccion}}</td>
+                        <td>{{ datosP.habitos}}</td>
+                        <td>{{ datosP.enfermedades}}</td>
+                        <td>{{ datosP.enfermedades_hederitarias}}</td>
+                        <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
+                        <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
+                    </tr>
+
+                </tbody>
+            </table>    
+        </nav>
+    </body>
+</html>

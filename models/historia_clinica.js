@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     const historia_clinica = sequelize.define('historia_clinica', {
 
         fecha_creacion: {
-            type: DataTypes.DATE
+            type: DataTypes.DATEONLY
         },
         n_historia: {
             type: DataTypes.STRING

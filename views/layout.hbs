@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>{{title}}</title>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
+    <head>
+        <title>{{title}}</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
 
-<body>
-  <!-- Header -->
-  <div id="header">
+    <body>
+        <!-- Header -->
+        <div id="header">
 
-    <!-- Nav -->
-    {{#if ocultar}}
-    {{else}}
-    <nav id="nav">
-      <ul>
-        <li><a href="/" id="logo">Principal</a></li>
-        <li>
-          <a href="#">Nuevo Paciente</a>
-          <ul>
-            <li><a href="/DatosPersonales">Datos Personales</a></li>
-            <li><a href="#">Examen Clinico</a>
-              <ul>
-                <li><a href="/signos_vitales">Signos Vitales</a></li>
-                <li><a href="/examen_extraoral">Examen Extraoral</a></li>
-                <li><a href="/odontograma">Odontograma</a></li>
-              </ul>
-            </li>
-            <li><a href="/Diagnostico">Diagnostico</a></li>
+            <!-- Nav -->
+            {{#if ocultar}}
+            {{else}}
+            <nav id="nav">
+                <ul>
+                    <li><a href="/" id="logo">Principal</a></li>
+                    <li>
+                        <a href="#">Nuevo Paciente</a>
+                        <ul>
+                            <li><a href="/DatosPersonales">Datos Personales</a></li>
+                            <li><a href="#">Examen Clinico</a>
+                                <ul>
+                                    <li><a href="/signos_vitales">Signos Vitales</a></li>
+                                    <li><a href="/examen_extraoral">Examen Extraoral</a></li>
+                                    <li><a href="/odontograma">Odontograma</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Diagnostico">Diagnostico</a></li>
 
-          </ul>
-        </li>
-        <li><a href="#">Edicion</a></li>
-        <li><a href="#">Secuencia de Tratamiento</a></li>
-        <li><a href="#">Pagos</a></li>
-        <li><a href="#">Cuenta</a>
-          <!--MANEJAR CON UN IF EVALUANDO LA SESSION-->
-          <ul>
-            <li><a href="/login">Iniciar Sesion</a></li>
-            <li><a href="/registro">Registrarse</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </div>
-  {{/if}}
-  {{{body}}}
-</body>
+                        </ul>
+                    </li>
+                    <li><a href="/buscar">Buscar</a></li>
+                    <li><a href="#">Secuencia de Tratamiento</a></li>
+                    <li><a href="#">Pagos</a></li>
+                    <li><a href="#">Cuenta</a>
+                        <!--MANEJAR CON UN IF EVALUANDO LA SESSION-->
+                        <ul>
+                            <li><a href="/login">Iniciar Sesion</a></li>
+                            <li><a href="/registro">Registrarse</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        {{/if}}
+        {{{body}}}
+    </body>
 
 </html>

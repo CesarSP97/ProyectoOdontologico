@@ -1,4 +1,4 @@
-var express = require('express');
+ var express = require('express');
 var router = express.Router();
 var usuario = require('../controllers/usuario_controller');
 var Usuario = new usuario();
@@ -12,6 +12,8 @@ var diagnostico = require('../controllers/DiagnosticoController');
 var Diagnostico = new diagnostico();
 var cuenta = require('../controllers/CuentaController');
 var Cuenta = new cuenta();
+var rol = require('../controllers/RolController');
+var Rol = new rol();
 
 function verificar_inicio(req) {
     return (req.session !== undefined && req.session.Cuenta !== undefined);
@@ -26,7 +28,8 @@ var auth = function (req, res, next) {
 };
 //Redireccionamiento de Vistas
 router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Pagina'});
+    Rol.crear_roles();
+    res.render('index', {title: 'Pagina', session: false});
 });
 
 router.get('/Odontologia', function (req, res, next) {
@@ -59,13 +62,17 @@ router.get('/registro', function (req, res, next) {
     res.render('registro', {title: 'Registrar', ocultar: 'true'});
 });
 
+router.get('/buscar', function (req, res, next) {
+    res.render('buscar', {title: 'Buscar', ocultar: 'true'});
+});
+
 //controlador de inicio de secion
 
 
 router.post('/inicio_sesion', Cuenta.iniciar_sesion);
 
 //guardar persona
-router.post('/login', Usuario.guardar);
+router.post('/registro', Usuario.guardar);
 router.post('/DatosPersonales', Persona.guardarpaciente);
 router.post('/signos_vitales', Signos.guardarsignos);
 router.post('/examen_extraoral', Examen.guardarexamen);

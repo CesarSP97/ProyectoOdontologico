@@ -12,7 +12,7 @@ class DiagnosticoController {
         };        
         diagnostico.create(datosDig).then(function (diagnostico) {            
                 console.log("Bien Henao");
-                res.redirect("/PlanDeTratamiento");
+                res.redirect("/");
         });
     }
 
