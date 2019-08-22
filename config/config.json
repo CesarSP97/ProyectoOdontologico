@@ -1,17 +1,11 @@
 {
     "development": {
-        "username": "root",
-        "password": "242016",
+        "username": "jhon",
+        "password": "elrey123",
         "database": "odontologia",
         "host": "127.0.0.1",
         "dialect": "mysql",
         "operatorsAliases": false
-    },"staging": {
-        "username": "root",
-        "password": "elrey123",
-        "database": "odontologia",
-        "host": "localhost",
-        "dialect": "mysql"
     },
     "test": {
         "username": "root",
