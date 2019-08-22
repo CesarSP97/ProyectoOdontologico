@@ -10,61 +10,182 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
         <!--=====================Validaciones=================================================================-->
         <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+        <!-- Plantilla -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
+
     </head>
+
     <body>
-        <nav class="navbar navbar-light bg-light">
-            <center><a style="font-size: 200%; te">Buscar Pacientes</a></center>
-            <br>
-            <form class="form-inline" method="GET" action="/buscar/paciente">
-                <select id="opcion" name="opcion" class="btn  btn-md   " style="background: #04B431"> 
-                    <option value="todos">Nombres</option>
-                    <option value="cedula">Numero de Historia Clinica</option>
-                    <option value="apellidos">Apellidos</option>
-                </select>
-                <input type="text"  id="texto" name="texto" class="btn  btn-md"  placeholder="Ingrese su dato a buscar">
-                <button type="submit" id="boton"  class="btn  btn-md" style="background: #FFC312; color: #202835" >Buscar</button>
-            </form>
-            <br>
-            <br>
-            <br>
+        <div class="page-wrapper">
+            <center><a style="font-size: 200%">Buscar Pacientes</a></center>
             <div>
-                <center>
-                    <label style="background: #FE2E2E">Listado de Pacientes</label>
-                </center>
+                <div>
+                    <form method="GET" action="/buscar/paciente" style="display: -webkit-inline-box; padding-top: 10px; padding-bottom: 10px; margin-left: 2em">
+                        <div>Buscar  por  :</div>
+                        <select id="opcion" name="opcion" class="btn  btn-md   " style="background: #36BCF5"> 
+                            <option value="todos">Nro. Historia</option>     
+                            <option value="todos">Nombres</option>                        
+                            <option value="apellidos">Apellidos</option>
+                        </select>
+                        <br>
+                        <input type="text"  id="texto" name="texto" class="btn  btn-md"  placeholder="Ingrese su dato a buscar" style="width: 90%">
+                        <button type="submit" id="boton"  class="btn  btn-md" style="background: #343A40; color: #fff" >Buscar</button>
+                    </form>
+                </div>
             </div>
-            <table id="tabla" class="table table-responsive table-bordered " style="color: #222">
 
-                <thead style="font-size: 20px">                                         
-                <th>Nro. de Historia</th>
-                <th>Paciente</th>
-                <th>Direccion</th>
-                <th>Habitos</th>
-                <th>Enfermedades</th>
-                <th>Hereditarias</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-                </thead>
 
-                <tbody>
+            <nav class="navbar navbar-light bg-light">
+                <div><center> <h2>Datos Personales</h2> </center></div>
 
-                    <tr>
-                        <td>{{datosP.usuario.n_historia}}</td>
-                        <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
-                        <td>{{ datosP.paciente.direccion}}</td>
-                        <td>{{ datosP.habitos}}</td>
-                        <td>{{ datosP.enfermedades}}</td>
-                        <td>{{ datosP.enfermedades_hederitarias}}</td>
-                        <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
-                        <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
-                    </tr>
+                <table id="tabla" class="table table-bordered" style="border: 2em">
 
-                </tbody>
-            </table>    
-        </nav>
+                    <thead style="font-size: 1.1em" class="table thead-dark">                                         
+                    <th>Nro.Historia</th>
+                    <th>Paciente</th>
+                    <th>Edad</th>
+                    <th>Telefono</th>
+                    <th>Correo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>{{datosP.usuario.n_historia}}</td>
+                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
+                            <td>{{ datosP.paciente.direccion}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
+                            <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <center> <h2>Enfermedades</h2> </center>
+
+                <table id="tabla" class="table table-bordered" style="border: 2em">
+                    <thead style="font-size: 1.1em" class="table thead-dark">                                         
+                    <th>Alergia antibiotico</th>
+                    <th>Alergia Anestesia</th>
+                    <th>Hemorragias</th>
+                    <th>VIH Sida</th>
+                    <th>Tuberculosis</th>
+                    <th>Asma</th>
+                    <th>Diabetes</th>
+                    <th>Hipertencion</th>
+                    <th>Enf.Cardiacas</th>
+                    <th>Medicamentos</th>
+                    <th>Otros</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>{{datosP.usuario.n_historia}}</td>
+                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
+                            <td>{{ datosP.paciente.direccion}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{ datosP.enfermedades}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <center> <h2>Signos VItales</h2> </center>
+                <table id="tabla" class="table table-bordered" style="border: 2em">
+
+                    <thead style="font-size: 1.1em" class="table thead-dark">                                         
+                    <th>Preson Arterial</th>
+                    <th>Frecuencia Cardiaca</th>
+                    <th>Temperatura</th>
+                    <th>Respiraciones por min.</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>{{datosP.usuario.n_historia}}</td>
+                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
+                            <td>{{ datosP.paciente.direccion}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <center> <h2>Examen Extraoral</h2> </center>
+                <table id="tabla" class="table table-bordered" style="border: 2em">
+
+                    <thead style="font-size: 1.1em" class="table thead-dark">                                         
+                    <th>Labios</th>
+                    <th>Mejillas</th>
+                    <th>Maxilar Superior</th>
+                    <th>Maxilar inferior</th>
+                    <th>Lengua</th>
+                    <th>Paladar</th>
+                    <th>Piso</th>
+                    <th>Carrillos</th>
+                    <th>Glandulas Salibales</th>
+                    <th>ATM</th>
+                    <th>Oro Faringue</th>
+                    <th>Ganglios</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>{{datosP.usuario.n_historia}}</td>
+                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
+                            <td>{{ datosP.paciente.direccion}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                            <td>{{ datosP.habitos}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <center> <h2>Odontograma</h2> </center>
+                <div style="width: 100%; height: 100px">
+
+                </div>
+
+                <div>
+                    <h2>Diagnostico</h2>
+                    <textarea maxlength="100" rows="5" cols="100" style="width: 100%"></textarea>
+                </div>
+            </nav>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
     </body>
 </html>
