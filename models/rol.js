@@ -1,8 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const rol = sequelize.define('rol', {
-        
-        nombre: DataTypes.STRING(40)
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: DataTypes.INTEGER(6)
+        },
+        nombre: DataTypes.STRING(45)
         
     }, {freezeTableName: true});
     rol.associate = function (models) {

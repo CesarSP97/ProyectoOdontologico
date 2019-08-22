@@ -12,8 +12,7 @@ var diagnostico = require('../controllers/DiagnosticoController');
 var Diagnostico = new diagnostico();
 var cuenta = require('../controllers/CuentaController');
 var Cuenta = new cuenta();
-var rol = require('../controllers/RolController');
-var Rol = new rol();
+var rol = require('../controllers/IngresarDatos/insertRol');
 
 //controlador de inicio de secion
 function verificar_inicio(req) {
@@ -29,7 +28,7 @@ var auth = function (req, res, next) {
 };
 //Redireccionamiento de Vistas
 router.get('/', function (req, res, next) {
-    Rol.crear_roles();
+    rol;
     res.render('index', {title: 'Pagina', session: false});
 });
 

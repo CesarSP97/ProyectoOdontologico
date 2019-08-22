@@ -49,7 +49,7 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    console.log("ERORRORORORORROO");
+    console.log("----------------------------------------------");
     console.log(err);
     res.render('error', { ocultar: 'true' });
 });
