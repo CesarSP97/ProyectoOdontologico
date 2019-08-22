@@ -1,16 +1,31 @@
 'use strict';
 var models = require('./../models/');
 var uuid = require('uuid');
+var historia = models.historia_clinica;
+var persona = models.persona;
 class PersonaController {
 
     visualizar(req, res) {
-        var persona = models.persona;
+        
         persona.findAll().then(function (lista) {
             var index = 'HIS-' + (lista.length + 1);
             res.render('DatosPersonales', {title: 'Datos Personales', nro: index});
         });
 
     }
+    
+    listarPacientes(req, res) {
+        historia.findAll({include: {model: persona}}).then(function (lpersona) {
+            if (lpersona) {
+                console.log(lpersona);
+                res.render('buscar',{title: 'Buscar',listaP: lpersona});
+            }
+        }).catch(function (err) {
+            req.flash('error', 'Hubo un error');
+            res.redirect('/buscar');
+        });
+    }
+    
     guardarpaciente(req, res) {
         var persona = models.persona;
         var usuario = models.usuario;

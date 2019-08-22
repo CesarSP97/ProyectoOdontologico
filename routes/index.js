@@ -62,9 +62,7 @@ router.get('/registro', function (req, res, next) {
     res.render('registro', {title: 'Registrar', ocultar: 'true'});
 });
 
-router.get('/buscar', function (req, res, next) {
-    res.render('buscar', {title: 'Buscar'});
-});
+router.get('/buscar', Persona.listarPacientes);
 
 router.get('/admin', function (req, res, next) {
     res.render('admin', {title: 'Administrador', ocultar: 'true'});
