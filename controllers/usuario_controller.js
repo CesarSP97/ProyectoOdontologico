@@ -19,7 +19,7 @@ class UsuarioController {
         };
         console.log(datos);
         usuario.create(datos).then(function(newcuenta) {
-            res.redirect("/");
+            res.redirect("/admin");
         });
     }
 

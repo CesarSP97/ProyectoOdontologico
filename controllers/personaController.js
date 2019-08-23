@@ -58,7 +58,7 @@ class PersonaController {
             medicamentos: req.body.medicamentos,
             otros: req.body.otros,
             external_id: uuid.v4(),
-            //usuarioId:,
+            usuarioId:req.session.passport.user,
             
             historia_clinica: {
                 n_historia: req.body.n_historia,
@@ -69,8 +69,8 @@ class PersonaController {
         };
         console.log(datosP);
         persona.create(datosP, {include: {model: models.historia_clinica, as: 'historia_clinica'}}).then(function (newperona) {
-
-            res.redirect("/signos_vitales");
+            
+            res.redirect("/signos_vitales/"+encodeURI(req.body.n_historia));
         });
     }
 

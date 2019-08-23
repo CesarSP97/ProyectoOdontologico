@@ -11,7 +11,8 @@ class SignosVitalesController {
             frecuencia_cardiaca: req.body.f_cardiaca,
             temperatura: req.body.temperatura,
             respi_por_min: req.body.rpm,
-            externa_id: uuid.v4()
+            externa_id: uuid.v4(),
+            historiaClinicaId: req.params.n_historia
         };        
         signos.create(datosSig).then(function (signos) {            
                 console.log("Bien Henao");

@@ -43,7 +43,7 @@ function cargarMedicos() {
             console.log(data);
             if (data.codigo)
             {
-                manejoErroresJson(data.message, data.codigo)
+                manejoErroresJson(data.message, data.codigo);
             } else
             {
                 var tabla = '';
