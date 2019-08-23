@@ -15,6 +15,12 @@
         <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
         <script src="../js/funciones.js" type="text/javascript"></script>
+
+        <!--=====================SweetAlert=================================================================-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+        <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
         <script>
             function validacionRegistro() {
                 $.validator.addMethod("cedula", function (value, element) {
@@ -39,8 +45,6 @@
                         correo: {
                             required: true,
                             email: true,
-                            minlength: 8,
-                            maxlength: 80
                         },
                         clave: {
                             required: true
@@ -50,7 +54,7 @@
                         nombres: {required: 'Este campo es obligatorio'},
                         apellido: {required: 'Este campo es obligatorio'},
                         cedula: {required: 'Este campo es obligatorio'},
-                        correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto', minlength: 'El minimo permitido es 8 caracteres', maxlength: 'El maximo permitido son 80 caracteres'},
+                        correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto'},
                         clave: {required: 'Este campo es obligatorio'}
                     }
                 });
@@ -61,11 +65,10 @@
         </script>
     </head>
     <body>
-
         <div class="table-responsive">
             <nav class="navbar navbar-light bg-light">
                 <a  class="btn btn-success"  href="#"  style="width: 100%; background-position: center; background: #0D7BFF;color: white" data-placement="top" data-toggle="modal" data-target="#Form2" onclick="">Registrar Usuarios</a>
-
+                
                 <br><br><label style="font-size: 120%;background-position: left">Buscar Usuarios</label><br><br>
                 <form class="form-inline" method="GET" action="/buscar/usuario">
                     <select id="opcion" name="opcion" class="btn  btn-md" style="background: #04B431"> 
@@ -104,7 +107,7 @@
                         <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a> </td>
                         <td><a class="btn btn-success"  href="#"  style="background: #04B431" data-placement="top" data-toggle="modal" data-target="#Form2">Editar</a></td>
                     </tr>
-                {{/each }}
+                    {{/each }}
             </table>
         </div>
         <div id="Form2" class="modal fade" role="dialog">
@@ -114,7 +117,6 @@
                 <div class="modal-content">
                     <center>
                         <div class="modal-header" >
-
                             <h2 class="modal-title" style="margin-left: 15%">Registro de Usuarios</h2> 
                         </div>
                     </center>
@@ -123,7 +125,6 @@
 
                             <input type="hidden"  id="external" name="external"/>
                             <center>DATOS PERSONALES</center>
-
                             <div class="form-group">
                                 <label for="nombre">Nombres:</label>
                                 <input type="text" class="form-control" id="nombre"  name="nombre" placeholder="Ingrese sus Nombres">
@@ -154,18 +155,26 @@
                                 <input type="password" class="form-control" id="clave"  name="clave" placeholder="Ingrese su Clave">
                             </div>
                             <div class="form-group" style="margin-left:  12%">
-                                <div class="modal-footer "> 
-                                    <button type="submit" class="btn btn-success col-md-5" >Guardar</button>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
                                     <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-
+                    <script>
+                        function guardado() {
+                            Swal.fire({
+                                position: 'top-end',
+                                type: 'success',
+                                title: 'Espere !',
+                                showConfirmButton: false,
+                                timer: 2400
+                            });
+                        };
+                    </script>
                 </div>
-
             </div>
         </div>
-
     </body>
 </html>

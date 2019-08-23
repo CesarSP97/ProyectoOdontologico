@@ -1,6 +1,7 @@
 'use strict';
 var models = require('./../models/');
 var uuid = require('uuid');
+
 class UsuarioController {
 
     guardar(req, res) {
@@ -18,10 +19,22 @@ class UsuarioController {
 
         };
         console.log(datos);
-        usuario.create(datos).then(function(newcuenta) {
-            res.redirect("/admin");
-        });
+        if (datos) {
+            usuario.create(datos).then(function (newcuenta) {
+                var millisecondsToWait = 2500;
+                setTimeout(function () {
+                    res.redirect('http://localhost:3000/admin');
+                    console.log("******Registrado con exito******");
+                }, millisecondsToWait);
+            });
+        } else {
+            var millisecondsToWait = 2500;
+            setTimeout(function () {
+                res.redirect('http://localhost:3000/admin');
+                console.log("Hubo un error");
+            }, millisecondsToWait);
+        }
+        ;
     }
-
 }
 module.exports = UsuarioController;
