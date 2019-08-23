@@ -12,14 +12,16 @@
  var Diagnostico = new diagnostico();
  var cuenta = require('../controllers/CuentaController');
  var Cuenta = new cuenta();
-
+ var passport = require('passport');
 
  //controlador de inicio de secion
  function verificar_inicio(req) {
-     return (req.session !== undefined && req.session.Cuenta !== undefined);
+     console.log(req.session);
+     return (req.session !== undefined && req.session.passport !== undefined);
  }
  var auth = function(req, res, next) {
      if (verificar_inicio(req)) {
+         console.log(req.session);
          next();
      } else {
          req.flash('error', 'Debes iniciar sesion primero!');
@@ -28,7 +30,6 @@
  };
  //Redireccionamiento de Vistas
  router.get('/', function(req, res, next) {
-
      res.render('index', { title: 'Pagina', session: false });
  });
 
@@ -36,7 +37,7 @@
      res.render('Odontologia', { title: 'Pagina Principal' });
  });
 
- router.get('/DatosPersonales', Persona.visualizar);
+ router.get('/DatosPersonales', auth, Persona.visualizar);
 
  router.get('/Diagnostico', function(req, res, next) {
      res.render('Diagnostico', { title: 'Diagnostico' });
@@ -68,7 +69,11 @@
      res.render('admin', { title: 'Administrador', ocultar: 'true' });
  });
 
- router.post('/inicio_sesion', Cuenta.iniciar_sesion);
+ //router.post('/inicio_sesion', Cuenta.iniciar_sesion);
+ router.post('/inicio_sesion', passport.authenticate('local-signin', {
+     successRedirect: '/',
+     failureRedirect: '/login'
+ }));
 
  //guardar persona
  router.post('/registro', Usuario.guardar);

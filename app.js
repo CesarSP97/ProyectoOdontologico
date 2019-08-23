@@ -10,8 +10,9 @@ var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
 
 var session = require('express-session');
-var flash = require('connect-flash');
 
+var flash = require('connect-flash');
+var passport = require('passport');
 var app = express();
 
 // view engine setup
@@ -30,6 +31,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+////PASSPORRT
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
