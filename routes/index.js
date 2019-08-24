@@ -12,6 +12,10 @@
  var Diagnostico = new diagnostico();
  var cuenta = require('../controllers/CuentaController');
  var Cuenta = new cuenta();
+  var citas = require('../controllers/CitasController');
+ var Citas = new citas();
+ var secuencia = require('../controllers/SecuenciaController');
+ var Secuencia = new secuencia();
  var passport = require('passport');
 
  //controlador de inicio de secion
@@ -28,6 +32,30 @@
          res.redirect('/');
      }
  };
+ var admin = function(req, res, next) {
+     if (req.user.rol === "ADMINISTRADOR") {
+         next();
+     } else {
+         req.flash('error', 'No esta autorizado!');
+         res.redirect('/');
+     }
+ };
+  var secre = function(req, res, next) {
+     if (req.user.rol === "SECRETARIA") {
+         next();
+     } else {
+         req.flash('error', 'No esta autorizado!');
+         res.redirect('/');
+     }
+ };
+  var odon = function(req, res, next) {
+     if (req.user.rol === "ODONTOLOGO") {
+         next();
+     } else {
+         req.flash('error', 'No esta autorizado!');
+         res.redirect('/');
+     }
+ };
  //Redireccionamiento de Vistas
  
  router.get('/', function(req, res, next) {
@@ -37,16 +65,17 @@
      res.render('Odontologia', { title: 'Pagina Principal' });
  });
  
-  router.get('/citas', auth, function(req, res, next) {
-     res.render('citas', { title: 'Citas', ocultar: 'true'});
- });
 
- router.get('/DatosPersonales', auth, Persona.visualizar);
+ router.get('/DatosPersonales', odon,auth, Persona.visualizar);
 
 
 
  router.get('/odontograma', auth, function(req, res, next) {
      res.render('Odontograma', { title: 'Odontograma', ocultar: 'true' });
+ });
+ 
+ router.get('/SecuenciaTratamiento', auth, function(req, res, next) {
+     res.render('secuenciaTratamiento', { title: 'Secuencia de Tratamiento'});
  });
  router.get('/signos_vitales/:texto', auth,Signos.listar);
  /*router.get('/signos_vitales', auth, function(req, res, next) {
@@ -59,14 +88,16 @@
 
  router.get('/buscar', auth, Persona.listarPacientes);
 router.get('/buscar/paciente', auth, Persona.buscarPaciente);
-/* router.get('/admin', function(req, res, next) {
-     res.render('admin', { title: 'Administrador', ocultar: 'true' });
- });*/
+
+//router.get('/admin', function(req, res, next) {
+//     res.render('admin', { title: 'Administrador', ocultar: 'true' });
+// });
 
   router.post('/inicio_sesion', passport.authenticate('local-signin', {
      successRedirect: '/perfil',
      failureRedirect: '/'
  }));
+ 
  router.get('/perfil', Cuenta.perfil);
  
  router.get('/cerrar_sesion', auth, Cuenta.cerrar_sesion);
@@ -76,5 +107,12 @@ router.get('/buscar/paciente', auth, Persona.buscarPaciente);
  router.post('/signos_vitales', auth, Signos.guardarsignos);
  router.post('/examen_extraoral', auth, Examen.guardarexamen);
  router.post('/diagnostico', auth, Diagnostico.guardarDiagnostico);
+ router.get('/lista/pacientes/', auth,Citas.listarPacientes);
+ router.post('/guardar/citas/', auth,Citas.guardarCitas);
+  router.post('/pago/citas/', auth,Citas.pagoCitas);
+  router.post('/editar/citas/', auth,Citas.editarCitas);
+router.get('/citas', auth,Citas.listarCitas);
+router.get('/Secuencia/:texto', auth,Secuencia.listarSecuencia);
+router.post('/editar/Secuencia/', auth,Secuencia.editarSecuencia);
 
  module.exports = router;

@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="assets/css/main.css" />
+        <link rel="stylesheet" href="/assets/css/main.css" />
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
         <!--=====================Validaciones=================================================================-->
@@ -64,7 +64,9 @@ and open the template in the editor.
                             <td>{{Paciente.persona.telefono}}</td>
                             <td>{{Paciente.persona.correo}}</td>
                             <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
-                            <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
+                            <td><a class="btn btn-info" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> 
+                                <a href="/Secuencia/{{Paciente.persona.id}}"  class="btn btn-default" style="margin-left: 5%;background: #a6e1ec"  >Secuencia Tratamiento</a> </td>
+
                         </tr>
 
                     </tbody>
@@ -185,12 +187,6 @@ and open the template in the editor.
 
         </div>
 
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.dropotron.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+
     </body>
 </html>

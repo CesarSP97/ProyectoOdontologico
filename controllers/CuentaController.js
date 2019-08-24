@@ -13,10 +13,10 @@ class CuentaController {
             ).error(function (error) {});
 
         } else if (req.user.rol === "SECRETARIA") {
-            res.render('secretaria', {title: 'Pagina', ocultar: 'true', session: false});
+            res.render('secretaria', {title: 'Pagina', ocultar: 'true', session: false,usuario:req.user.nombre,rol:req.user.rol});
             
         } else if (req.user.rol === "ODONTOLOGO") {
-            res.render('index', {title: 'Pagina', session: false});
+            res.render('index', {title: 'Pagina', session: false,usuario:req.user.nombre,rol:req.user.rol});
         }
 
     }

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+        <!--=====================Validaciones=================================================================-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+        <script src="../js/funciones.js" type="text/javascript"></script>
+
+        <!--=====================SweetAlert=================================================================-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+        <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <!-- Plugin DataTable-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.css"/>
+        <script>
+function validacionRegistro() {
+    $.validator.addMethod("cedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Ingrese una cedula valida ");
+
+    $("#registrar").validate({
+        rules: {
+            nombre: {
+                required: true
+            },
+            apellido: {
+                required: true
+            },
+            cedula: {
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                number: true,
+                cedula: true
+            },
+            correo: {
+                required: true,
+                email: true,
+            },
+            clave: {
+                required: true
+            }
+        },
+        messages: {
+            nombres: {required: 'Este campo es obligatorio'},
+            apellido: {required: 'Este campo es obligatorio'},
+            cedula: {required: 'Este campo es obligatorio'},
+            correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto'},
+            clave: {required: 'Este campo es obligatorio'}
+        }
+    });
+}
+;
+function vaciar() {
+    $('#nombre').val("");
+    $('#apellido').val("");
+    $('#cedula').val("");
+    $('#correo').val("");
+    $('#clave').val("");
+    $('#external').val("0");
+}
+$(document).ready(function () {
+    validacionRegistro();
+    $('#tabla').DataTable({
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+});
+        </script>
+    </head>
+    <body>
+        <div class="table-responsive">
+
+            <nav class="navbar navbar-light bg-light">
+                <a  class="btn btn-danger"  href="/cerrar_sesion"  style="width: 12%; background-position: center; color: white" >Cerrar Sesion</a>
+            </nav>
+            <center>
+                <br>
+                <label>Listado de Tratamientos</label>
+            </center>
+            <table id="tabla" class="table table-bordered thead-dark" style="color: #222">
+                <thead style="font-size: 20px" class="table thead-dark">                                         
+                <th>Nro.</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Diagnostico</th>
+                <th>Tratamiento Realizo</th>
+                <th>Accion</th>
+                </thead>
+                <tbody>
+                    {{#each this.Citas as |Citas i| }}
+                    <tr>
+                        <td>{{i}}</td>
+                        <td>{{Citas.fecha}}</td>
+                        <td>{{Citas.citum.persona.nombres}} {{Citas.citum.persona.Apellidos}}</td>
+                        <td>{{Citas.diagnostico}}</td>
+                        <td>{{Citas.tratamiento_realizado}}</td>
+                        <td><a id="{{i}}" class="btn" href="#"  style="margin-left: 5%; background-color: #2A2C61; color: white"  data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a></td>
+                <script>
+                    $("#{{i}}").click(function () {
+                        $('#external').val("{{ Citas.external_id}}");
+                        $('#fecha').val("{{Citas.fecha}}");
+                        $('#diagnostico').val("{{Citas.diagnostico}}");
+                        $('#tratamiento').val("{{Citas.tratamiento_realizado}}");
+                        $('#paciente').val("{{Citas.citum.persona.nombres}} {{Citas.citum.persona.Apellidos}}");
+                        $('#paciente_id').val("{{Citas.citum.persona.id}}");
+                    });
+                </script>
+                </tr>
+                {{/each }}
+            </table>
+        </div>
+        <div id="Form2" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <center>
+                        <div class="modal-header" >
+                            <h2 class="modal-title" style="margin-left: 15%">Registro de Usuarios</h2> 
+                        </div>
+                    </center>
+                    <div class="modal-body">
+                        <form action="/editar/Secuencia/" id="registrar" method="POST">
+
+                            <input type="hidden"  id="external" name="external"/>
+                            <input type="hidden"  id="paciente_id" name="paciente_id"/>
+                            <center>DATOS TRATAMIENTO</center>
+                            <div class="form-group">
+                                <label for="nombre">Paciente:</label>
+                                <input type="text" class="form-control" id="paciente" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido">Fecha:</label>
+                                <input type="date" class="form-control" id="fecha" readonly>
+                            </div>
+                           
+                            <div class="form-group">
+                                <label for="correo">Diagnostico</label>
+                                <textarea type="text" class="form-control" id="diagnostico"  name="diagnostico" placeholder="Ingrese su Correo Personal"></textarea>
+                            </div>
+                            <div class="form-group" >
+                                <label for="clave">Tratamiento:</label>
+                                <textarea type="text" class="form-control" id="tratamiento"  name="tratamiento" placeholder="Ingrese su Correo Personal"></textarea>
+                            </div>
+                            <div class="form-group" style="margin-left:  12%">
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
+                                    <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <script>
+                        function guardado() {
+                            Swal.fire({
+                                position: 'top-end',
+                                type: 'success',
+                                title: 'Espere !',
+                                showConfirmButton: false,
+                                timer: 2400
+                            });
+                        }
+                        ;
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<!-- DATA TABLE -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>

@@ -21,7 +21,21 @@ and open the template in the editor.
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
         <!-- Plantilla -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
+        <!-- Plugin DataTable-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.css"/>
 
+        <script>
+
+
+$(document).ready(function () {
+
+    $('#tabla').DataTable({
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+});
+        </script>
     </head>
 
     <body>
@@ -29,65 +43,67 @@ and open the template in the editor.
             <nav id="nav">
                 <ul>
                     <li><a href="/perfil" id="logo">Principal</a></li>
+                    <li><a href="/lista/pacientes/">Pacientes</a></li>
                     <li><a href="/citas">Citas</a></li>
-                    <li><a href="#">Pagos</a></li>
                     <li><a href="/cerrar_sesion">Cerrar Sesion</a></li>
                 </ul>
             </nav>
-            
+            <br>
+            <div style="text-align: center"><center> <h2>Listado de Citas</h2> </center></div>
+
+
             <nav class="navbar navbar-light bg-light">
-                <a  class="btn btn-success"  href="#"  style="width: 45%; background-position: center" data-toggle="modal" data-target="#Form" onclick="">Registrar Citas</a>
-                <!--<h1><a href="/cerrar_sesion">Cerrar Sesion</a></h1>-->
-            </nav>
-            <div>
-                <div>
-                    <form method="GET" action="/buscar/paciente" style="display: -webkit-inline-box; padding-top: 10px; padding-bottom: 10px; margin-left: 2em">
-                        <div>Buscar  por  :</div>
-                        <select id="opcion" name="opcion" class="btn  btn-md   " style="background: #36BCF5"> 
-                            <option value="Nhistoria">Nro. Historia</option>                           
-                            <option value="apellidos">Apellidos</option>
-                            <option value="apellidos">Fecha</option>                            
-                        </select>
-                        <br>
-                        <input type="text"  id="texto" name="texto" class="btn  btn-md"  placeholder="Ingrese su dato a buscar" style="width: 90%">
-                        <button type="submit" id="boton"  class="btn  btn-md" style="background: #343A40; color: #fff" >Buscar</button>
-                    </form>
+
+                <div class="table-responsive">
+                    <table id="tabla" class="table table-bordered" style="border: 2em">
+
+                        <thead style="font-size: 1.1em" class="table thead-dark">                                         
+
+                        <th>Paciente</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Costo</th>
+                        <th>Detalle de Costo</th>
+                        <th>Pago</th>
+                        <th>Accion</th>
+                        </thead>
+
+                        <tbody>
+                            {{#each this.Citas as |Citas i| }}
+                            <tr>
+
+                                <td>{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}</td>
+                                <td>{{Citas.fecha}}</td>
+                                <td>{{Citas.hora}}</td>
+                                <td>{{Citas.costo}}</td>
+                                <td>{{Citas.detalle_costo}}</td>
+                                {{#if Citas.estado}}
+                                <td><a id="{{i}}" class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Pagado</a> </td>
+                                {{else}}
+                                <td><a id="{{i}}" class="btn btn-default" href="#"  style="margin-left: 5%;background: #37c0fb" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >En Espera</a> </td>
+                                {{/if}}
+                                <td><a id="b{{i}}"class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form1" title="Editar" >Editar</a> </td>
+
+                            </tr>
+                        <script>
+                            $("#{{i}}").click(function () {
+                                $('#external').val("{{ Citas.externa_id}}");
+                                $('#estado').val("{{ Citas.estado}}");
+                                $('#paciente').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
+
+                            });
+                            $("#b{{i}}").click(function () {
+                                $('#external1').val("{{ Citas.externa_id}}");
+                                $('#fecha').val("{{ Citas.fecha}}");
+                                $('#hora').val("{{ Citas.hora}}");
+                                $('#paciente1').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
+
+                            });
+                        </script>
+                        {{/each }}
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-
-
-            <nav class="navbar navbar-light bg-light">
-                <div><center> <h2>Listado de Citas</h2> </center></div>
-
-                <table id="tabla" class="table table-bordered" style="border: 2em">
-
-                    <thead style="font-size: 1.1em" class="table thead-dark">                                         
-                    <th>Nro.Historia</th>
-                    <th>Paciente</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Costo</th>
-                    <th>Detalle de Costo</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                    </thead>
-
-                    <tbody>
-
-                        <tr>
-                            <td>{{Paciente.n_historia}}</td>
-                            <td>{{Paciente.persona.nombres}} {{Paciente.persona.Apellidos}}</td>
-                            <td>{{Paciente.persona.fecha}}</td>
-                            <td>{{Paciente.persona.hora}}</td>
-                            <td>{{Paciente.persona.costo}}</td>
-                            <td>{{Paciente.persona.Dcosto}}</td>
-                            <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
-                            <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
                 <div id="Form" class="modal fade" role="dialog">
                     <div class="modal-dialog">
 
@@ -95,26 +111,70 @@ and open the template in the editor.
                         <div class="modal-content">
                             <center>
                                 <div class="modal-header" >
-                                    <h2 class="modal-title" style="margin-left: 25%">Registro de Citas</h2> 
+                                    <h2 class="modal-title" style="margin-left: 25%">Pago de Citas</h2> 
                                 </div>
                             </center>
                             <div class="modal-body">
-                                <form action="#" id="registrar" method="POST">
+                                <form action="/pago/citas/" id="registrar" method="POST">
 
-                                    <input type="hidden"  id="external" name="external"/>
+                                    <input type="hidden"  id="external" name="external"/>                                  
+                                    <div class="form-group">
+                                        <label for="nombre">Paciente:</label>
+                                        <input type="text" class="form-control" id="paciente" readonly >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Dcosto">Pago:</label>
+                                        <select class="form-control" id="estado"  name="estado"  >
+                                            <option value="true">Pagado</option>
+                                            <option value="false">En Espera</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form-group" style="margin-left:  12%">
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
+                                            <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                                function guardado() {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        type: 'success',
+                                        title: 'Espere !',
+                                        showConfirmButton: false,
+                                        timer: 2400
+                                    });
+                                }
+                                ;
+                            </script>
+                        </div>
+                    </div>
+                </div>
+                <div id="Form1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <center>
+                                <div class="modal-header" >
+                                    <h2 class="modal-title" style="margin-left: 25%">Edicio de Citas</h2> 
+                                </div>
+                            </center>
+                            <div class="modal-body">
+                                <form action="/editar/citas/" id="registrar" method="POST">
+
+                                    <input type="hidden"  id="external1" name="external1"/>
                                     DATOS DEL PACIENTE
                                     <div class="form-group">
-                                        <label for="n_historia">Nro.Historia:</label>
-                                        <input type="text" class="form-control" id="cedula"  name="n_historia"  placeholder="Ingrese su Nro.Historia">
+                                        <label for="nombre">Paciente:</label>
+                                        <input type="text" class="form-control" id="paciente1" readonly>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="nombre">Nombres:</label>
-                                        <input type="text" class="form-control" id="nombre"  name="nombre" placeholder="Ingrese sus Nombres">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="apellido">Apellidos:</label>
-                                        <input type="text" class="form-control" id="apellido"  name="apellido" placeholder="Ingrese sus Apellidos">
-                                    </div>
+                                   
 
                                     DATOS DE LA CITA
                                     <div class="form-group">
@@ -123,17 +183,8 @@ and open the template in the editor.
                                     </div>
                                     <div class="form-group">
                                         <label for="hora">Hora:</label>
-                                        <input type="text" class="form-control" id="hora"  name="hora" placeholder="Ingrese la Hora">
+                                        <input type="time" class="form-control" id="hora"  name="hora" placeholder="Ingrese la Hora">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="costo">Costo:</label>
-                                        <input type="text" class="form-control" id="costo"  name="costo" placeholder="0$" readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Dcosto">Detalle de Costo:</label>
-                                        <input type="text" class="form-control" id="Dcosto"  name="Dcosto" placeholder="Detalle" readonly>
-                                    </div>
-                                    
 
                                     <div class="form-group" style="margin-left:  12%">
                                         <div class="modal-footer">
@@ -171,4 +222,5 @@ and open the template in the editor.
         <script src="assets/js/main.js"></script>
     </body>
 </html>
-
+<!-- DATA TABLE -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>

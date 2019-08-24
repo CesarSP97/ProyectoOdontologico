@@ -5,16 +5,13 @@ module.exports = (sequelize, DataTypes) => {
     const secuencia_tratamiento = sequelize.define('secuencia_tratamiento', {
 
         fecha: {
-            type: DataTypes.DATE
+            type: DataTypes.DATEONLY
         },
         diagnostico: {
             type: DataTypes.STRING
         },
         tratamiento_realizado: {
             type: DataTypes.STRING
-        },
-        abono: {
-            type: DataTypes.DECIMAL
         },
         external_id: {
             type: DataTypes.UUID
