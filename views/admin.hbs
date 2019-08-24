@@ -61,6 +61,15 @@
                     }
                 });
             }
+            ;
+            function vaciar() {
+                $('#nombre').val("");
+                $('#apellido').val("");
+                $('#cedula').val("");
+                $('#correo').val("");
+                $('#clave').val("");
+                $('#external').val("0");
+            }
             $(document).ready(function () {
                 validacionRegistro();
                 $('#tabla').DataTable({
@@ -73,11 +82,10 @@
     </head>
     <body>
         <div class="table-responsive">
-            
+
             <nav class="navbar navbar-light bg-light">
-                <a  class="btn btn-success"  href="#"  style="width: 45%; background-position: center" data-toggle="modal" data-target="#Form2" onclick="">Registrar Usuarios</a>
+                <a  class="btn btn-success"  href="#"  style="width: 45%; background-position: center" data-toggle="modal" data-target="#Form2" onclick="vaciar();">Registrar Usuarios</a>
                 <a  class="btn btn-danger"  href="/cerrar_sesion"  style="width: 12%; background-position: center; color: white" >Cerrar Sesion</a>
-                <!--<h1><a href="/cerrar_sesion">Cerrar Sesion</a></h1>-->
             </nav>
             <center>
                 <br>
@@ -104,9 +112,18 @@
                         <td>{{Cuenta.correo}}</td>
                         <td>{{Cuenta.rol.nombre}}</td>
                         <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Activo</a></td>
-                        <td><a class="btn" href="#"  style="margin-left: 5%; background-color: #2A2C61; color: white"  data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a></td>
+                        <td><a id="{{i}}" class="btn" href="#"  style="margin-left: 5%; background-color: #2A2C61; color: white"  data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a></td>
+                        <script>
+                            $("#{{i}}").click(function () {
+                                $('#external').val("{{ Cuenta.externa_id}}");
+                                $('#nombre').val("{{ Cuenta.nombre}}");
+                                $('#apellido').val("{{ Cuenta.apellido}}");
+                                $('#cedula').val("{{ Cuenta.cedula}}");
+                                $('#correo').val("{{ Cuenta.correo}}");
+                            });
+                        </script>
                     </tr>
-                    {{/each }}
+                {{/each }}
             </table>
         </div>
         <div id="Form2" class="modal fade" role="dialog">
@@ -170,8 +187,7 @@
                                 showConfirmButton: false,
                                 timer: 2400
                             });
-                        }
-                        ;
+                        };
                     </script>
                 </div>
             </div>
