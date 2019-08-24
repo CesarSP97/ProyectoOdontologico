@@ -12,7 +12,7 @@ class CuentaController {
                ).error(function(error){});
                
            }else if(req.user.rol === "SECRETARIA"){
-               
+               res.render('secretaria', { title: 'Pagina', session: false });
            }else if(req.user.rol === "ODONTOLOGO"){
                res.render('index', { title: 'Pagina', session: false });
            }

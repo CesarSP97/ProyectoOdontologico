@@ -2,10 +2,12 @@
 module.exports = (sequelize, DataTypes) => {
 
     const cita = sequelize.define('cita', {
-
-        calendario_citas: DataTypes.DATEONLY,
+                
+        detalle_costo: DataTypes.STRING,
+        costo: DataTypes.STRING,
         fecha: DataTypes.DATEONLY,
-        hora: DataTypes.DATE,
+        hora: DataTypes.STRING,
+        estado: DataTypes.BOOLEAN,     
         externa_id: DataTypes.UUID
 
     }, { freezeTableName: true });

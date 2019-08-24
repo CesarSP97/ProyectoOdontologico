@@ -64,7 +64,8 @@ router.get('/buscar/paciente', auth, Persona.buscarPaciente);
      failureRedirect: '/'
  }));
  router.get('/perfil', Cuenta.perfil);
-router.get('/cerrar_sesion', auth, Cuenta.cerrar_sesion);
+ 
+ router.get('/cerrar_sesion', auth, Cuenta.cerrar_sesion);
  //guardar persona
  router.post('/registro', Usuario.guardar);
  router.post('/DatosPersonales', auth, Persona.guardarpaciente);
