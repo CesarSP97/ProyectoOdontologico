@@ -1,35 +1,40 @@
 'use strict';
 var models = require('./../models/');
 var uuid = require('uuid');
+var Sequelize = require('sequelize');
+var Op = Sequelize.Op;
 var historia = models.historia_clinica;
 var persona = models.persona;
+var Signos = models.signos_vitales;
+var Examen = models.examen_extraoral;
+var Diagnostico = models.diagnostico;
 class PersonaController {
 
     visualizar(req, res) {
-        
+
         persona.findAll().then(function (lista) {
             var index = 'HIS-' + (lista.length + 1);
             res.render('DatosPersonales', {title: 'Datos Personales', nro: index});
         });
 
     }
-    
+
     listarPacientes(req, res) {
         historia.findAll({include: {model: persona}}).then(function (lpersona) {
             if (lpersona) {
                 console.log(lpersona);
-                res.render('buscar',{title: 'Buscar',listaP: lpersona});
+                res.render('buscar', {title: 'Buscar', listaP: lpersona});
             }
         }).catch(function (err) {
             req.flash('error', 'Hubo un error');
             res.redirect('/buscar');
         });
     }
-    
+
     guardarpaciente(req, res) {
         var persona = models.persona;
         var usuario = models.usuario;
-        
+
         var datosP = {
 
             nombres: req.body.nombres,
@@ -58,24 +63,46 @@ class PersonaController {
             medicamentos: req.body.medicamentos,
             otros: req.body.otros,
             external_id: uuid.v4(),
-            usuarioId:req.session.passport.user,
-            
+            usuarioId: req.session.passport.user,
+
             historia_clinica: {
                 n_historia: req.body.n_historia,
                 fecha_creacion: req.body.f_actual,
                 external_id: uuid.v4()
             }
-            
+
         };
         console.log(datosP);
         persona.create(datosP, {include: {model: models.historia_clinica, as: 'historia_clinica'}}).then(function (newperona) {
-            
-            res.redirect("/signos_vitales/"+encodeURI(req.body.n_historia));
+
+            res.redirect("/signos_vitales/" + encodeURI(req.body.n_historia));
         });
     }
-    
-    buscarPaciente(req,res){
-        
+
+    buscarPaciente(req, res) {
+        var opcion = req.query.opcion;
+        var texto = req.query.texto;
+        if (opcion === 'Nhistoria') {
+            historia.findOne({where: {n_historia: texto}, include: [{model: persona}, {model: Signos, as: "signos_vitales"}, {model: Examen, as: "examen_extraoral"}, {model: Diagnostico, as: "diagnostico"}]}).then(function (paciente) {
+                if (paciente) {
+                    //res.send(paciente);
+                    res.render('buscar', {title: 'Buscar', Paciente: paciente});
+                }
+            }).catch(function (err) {
+                req.flash('error', 'Hubo un error');
+                res.redirect('/buscar');
+            });
+        } else if (opcion === 'apellidos') {
+            historia.findOne({ include: [{model: persona, where: {Apellidos: {[Op.like]: '%' + texto + '%'}}}, {model: Signos, as: "signos_vitales"}, {model: Examen, as: "examen_extraoral"}, {model: Diagnostico, as: "diagnostico"}]}).then(function (paciente) {
+                if (paciente) {
+                    //res.send(paciente);
+                    res.render('buscar', {title: 'Buscar', Paciente: paciente});
+                }
+            }).catch(function (err) {
+                req.flash('error', 'Hubo un error');
+                res.redirect('/buscar');
+            });
+        }
     }
 
 }

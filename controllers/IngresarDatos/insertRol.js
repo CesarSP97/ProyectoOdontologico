@@ -6,7 +6,7 @@ var insertRol = function () {
             id: '1',
             job: 'ODONTOLOGO'}}).spread((user, created) => {
     });
-    
+
     Rol.findOrCreate({where: {nombre: 'SECRETARIA'},
         defaults: {
             id: '2',
@@ -18,6 +18,5 @@ var insertRol = function () {
             id: '3',
             job: 'ADMINISTRADOR'}}).spread((user, created) => {
     });
-
 };
 module.exports = insertRol();

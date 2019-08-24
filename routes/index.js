@@ -54,7 +54,7 @@
 
 
  router.get('/buscar', auth, Persona.listarPacientes);
-
+router.get('/buscar/paciente', auth, Persona.buscarPaciente);
 /* router.get('/admin', function(req, res, next) {
      res.render('admin', { title: 'Administrador', ocultar: 'true' });
  });*/

@@ -29,8 +29,7 @@ and open the template in the editor.
                     <form method="GET" action="/buscar/paciente" style="display: -webkit-inline-box; padding-top: 10px; padding-bottom: 10px; margin-left: 2em">
                         <div>Buscar  por  :</div>
                         <select id="opcion" name="opcion" class="btn  btn-md   " style="background: #36BCF5"> 
-                            <option value="todos">Nro. Historia</option>     
-                            <option value="todos">Nombres</option>                        
+                            <option value="Nhistoria">Nro. Historia</option>                           
                             <option value="apellidos">Apellidos</option>
                         </select>
                         <br>
@@ -57,12 +56,13 @@ and open the template in the editor.
                     </thead>
 
                     <tbody>
-                         
+
                         <tr>
-                            <td>{{usuario.historia_clinica.n_historia}}</td>
-                            <td>{{ usuario.nombres}} {{ usuario.apellidos}}</td>
-                            <td>{{ usuario.edad}}</td>
-                            <td>{{ usuario.correo}}</td>
+                            <td>{{Paciente.n_historia}}</td>
+                            <td>{{Paciente.persona.nombres}} {{Paciente.persona.Apellidos}}</td>
+                            <td>{{Paciente.persona.edad}}</td>
+                            <td>{{Paciente.persona.telefono}}</td>
+                            <td>{{Paciente.persona.correo}}</td>
                             <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
                             <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
                         </tr>
@@ -90,17 +90,19 @@ and open the template in the editor.
                     <tbody>
 
                         <tr>
-                            <td>{{datosP.usuario.n_historia}}</td>
-                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
-                            <td>{{ datosP.paciente.direccion}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
-                            <td>{{ datosP.enfermedades}}</td>
+                            <td>{{Paciente.persona.alergia_antibiotico}}</td>
+                            <td>{{Paciente.persona.alergia_anestesia}}</td>
+                            <td>{{Paciente.persona.hemorragias}}</td>
+                            <td>{{Paciente.persona.VIH_SIDA}}</td>
+                            <td>{{Paciente.persona.tuberculosis}}</td>
+                            <td>{{Paciente.persona.asma}}</td>
+                            <td>{{Paciente.persona.diabetes}}</td>
+                            <td>{{Paciente.persona.hipertencion}}</td>
+                            <td>{{Paciente.persona.enfermedades_cardicadas}}</td>
+                            <td>{{Paciente.persona.medicamentos}}</td>
+                            <td>{{Paciente.persona.otros}}</td>
+
+
                         </tr>
 
                     </tbody>
@@ -117,14 +119,14 @@ and open the template in the editor.
                     </thead>
 
                     <tbody>
-
+                        {{#each this.Paciente.signos_vitales as |Paciente i| }}
                         <tr>
-                            <td>{{datosP.usuario.n_historia}}</td>
-                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
-                            <td>{{ datosP.paciente.direccion}}</td>
-                            <td>{{ datosP.habitos}}</td>
+                            <td>{{Paciente.presion_arterial}}</td>
+                            <td>{{Paciente.frecuencia_cardiaca}}</td>
+                            <td>{{Paciente.temperatura}}</td>
+                            <td>{{Paciente.respi_por_min}}</td>                            
                         </tr>
-
+                        {{/each }}
                     </tbody>
                 </table>
 
@@ -147,21 +149,23 @@ and open the template in the editor.
                     </thead>
 
                     <tbody>
-                       
+
+                        {{#each this.Paciente.examen_extraoral as |Paciente i| }}
                         <tr>
-                            <td>{{datosP.usuario.n_historia}}</td>
-                            <td>{{ datosP.paciente.nombres}} {{ listaP.paciente.apellidos}}</td>
-                            <td>{{ datosP.paciente.direccion}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
-                            <td>{{ datosP.habitos}}</td>
+                            <td>{{Paciente.labios}}</td>
+                            <td>{{Paciente.mejillas}}</td>
+                            <td>{{Paciente.maxilar_superior}}</td>
+                            <td>{{Paciente.maxilar_inferior}}</td>
+                            <td>{{Paciente.lengua}}</td>
+                            <td>{{Paciente.paladar}}</td>
+                            <td>{{Paciente.piso}}</td>
+                            <td>{{Paciente.carrillos}}</td>
+                            <td>{{Paciente.glandulas_salibales}}</td>
+                            <td>{{Paciente.ATM}}</td>
+                            <td>{{Paciente.oro_faringue}}</td>
+                            <td>{{Paciente.ganglios}}</td>                            
                         </tr>
+                        {{/each }}
 
                     </tbody>
                 </table>
@@ -173,7 +177,9 @@ and open the template in the editor.
 
                 <div>
                     <h2>Diagnostico</h2>
-                    <textarea maxlength="100" rows="5" cols="100" style="width: 100%"></textarea>
+                    {{#each this.Paciente.diagnostico as |Paciente i| }}
+                    <textarea maxlength="100" rows="5" cols="100" style="width: 100%" readonly>{{Paciente.diagnostico_medico}}</textarea>
+                    {{/each }}
                 </div>
             </nav>
 
