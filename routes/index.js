@@ -36,6 +36,10 @@
  router.get('/Odontologia', auth, function(req, res, next) {
      res.render('Odontologia', { title: 'Pagina Principal' });
  });
+ 
+  router.get('/citas', auth, function(req, res, next) {
+     res.render('citas', { title: 'Citas', ocultar: 'true'});
+ });
 
  router.get('/DatosPersonales', auth, Persona.visualizar);
 

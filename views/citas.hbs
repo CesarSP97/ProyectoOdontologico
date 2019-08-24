@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+        <!--=====================Validaciones=================================================================-->
+        <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+        <!-- Plantilla -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
+
+    </head>
+
+    <body>
+        <div class="page-wrapper">
+            <nav id="nav">
+                <ul>
+                    <li><a href="/perfil" id="logo">Principal</a></li>
+                    <li><a href="/citas">Citas</a></li>
+                    <li><a href="#">Pagos</a></li>
+                    <li><a href="/cerrar_sesion">Cerrar Sesion</a></li>
+                </ul>
+            </nav>
+            
+            <nav class="navbar navbar-light bg-light">
+                <a  class="btn btn-success"  href="#"  style="width: 45%; background-position: center" data-toggle="modal" data-target="#Form" onclick="">Registrar Citas</a>
+                <!--<h1><a href="/cerrar_sesion">Cerrar Sesion</a></h1>-->
+            </nav>
+            <div>
+                <div>
+                    <form method="GET" action="/buscar/paciente" style="display: -webkit-inline-box; padding-top: 10px; padding-bottom: 10px; margin-left: 2em">
+                        <div>Buscar  por  :</div>
+                        <select id="opcion" name="opcion" class="btn  btn-md   " style="background: #36BCF5"> 
+                            <option value="Nhistoria">Nro. Historia</option>                           
+                            <option value="apellidos">Apellidos</option>
+                            <option value="apellidos">Fecha</option>                            
+                        </select>
+                        <br>
+                        <input type="text"  id="texto" name="texto" class="btn  btn-md"  placeholder="Ingrese su dato a buscar" style="width: 90%">
+                        <button type="submit" id="boton"  class="btn  btn-md" style="background: #343A40; color: #fff" >Buscar</button>
+                    </form>
+                </div>
+            </div>
+
+
+            <nav class="navbar navbar-light bg-light">
+                <div><center> <h2>Listado de Citas</h2> </center></div>
+
+                <table id="tabla" class="table table-bordered" style="border: 2em">
+
+                    <thead style="font-size: 1.1em" class="table thead-dark">                                         
+                    <th>Nro.Historia</th>
+                    <th>Paciente</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Costo</th>
+                    <th>Detalle de Costo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>{{Paciente.n_historia}}</td>
+                            <td>{{Paciente.persona.nombres}} {{Paciente.persona.Apellidos}}</td>
+                            <td>{{Paciente.persona.fecha}}</td>
+                            <td>{{Paciente.persona.hora}}</td>
+                            <td>{{Paciente.persona.costo}}</td>
+                            <td>{{Paciente.persona.Dcosto}}</td>
+                            <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
+                            <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+                <div id="Form" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <center>
+                                <div class="modal-header" >
+                                    <h2 class="modal-title" style="margin-left: 25%">Registro de Citas</h2> 
+                                </div>
+                            </center>
+                            <div class="modal-body">
+                                <form action="#" id="registrar" method="POST">
+
+                                    <input type="hidden"  id="external" name="external"/>
+                                    DATOS DEL PACIENTE
+                                    <div class="form-group">
+                                        <label for="n_historia">Nro.Historia:</label>
+                                        <input type="text" class="form-control" id="cedula"  name="n_historia"  placeholder="Ingrese su Nro.Historia">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nombre">Nombres:</label>
+                                        <input type="text" class="form-control" id="nombre"  name="nombre" placeholder="Ingrese sus Nombres">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Apellidos:</label>
+                                        <input type="text" class="form-control" id="apellido"  name="apellido" placeholder="Ingrese sus Apellidos">
+                                    </div>
+
+                                    DATOS DE LA CITA
+                                    <div class="form-group">
+                                        <label for="fecha">Fecha:</label>
+                                        <input type="date" class="form-control" id="fecha"  name="fecha">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hora">Hora:</label>
+                                        <input type="text" class="form-control" id="hora"  name="hora" placeholder="Ingrese la Hora">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="costo">Costo:</label>
+                                        <input type="text" class="form-control" id="costo"  name="costo" placeholder="0$" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Dcosto">Detalle de Costo:</label>
+                                        <input type="text" class="form-control" id="Dcosto"  name="Dcosto" placeholder="Detalle" readonly>
+                                    </div>
+                                    
+
+                                    <div class="form-group" style="margin-left:  12%">
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
+                                            <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                                function guardado() {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        type: 'success',
+                                        title: 'Espere !',
+                                        showConfirmButton: false,
+                                        timer: 2400
+                                    });
+                                }
+                                ;
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
+

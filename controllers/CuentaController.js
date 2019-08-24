@@ -4,22 +4,24 @@ var passport = require('passport');
 var Usuario = models.usuario;
 var Rol = models.rol;
 class CuentaController {
-    perfil(req,res){
-           if(req.user.rol === "ADMINISTRADOR"){
-               Usuario.findAll({include:{model:Rol}}).then(function(cuenta){
-                   res.render('admin', { title: 'Administrador', ocultar: 'true' ,Cuenta:cuenta});
-               }
-               ).error(function(error){});
-               
-           }else if(req.user.rol === "SECRETARIA"){
-               res.render('secretaria', { title: 'Pagina', session: false });
-           }else if(req.user.rol === "ODONTOLOGO"){
-               res.render('index', { title: 'Pagina', session: false });
-           }
+    
+    perfil(req, res) {
+        if (req.user.rol === "ADMINISTRADOR") {
+            Usuario.findAll({include: {model: Rol}}).then(function (cuenta) {
+                res.render('admin', {title: 'Administrador', ocultar: 'true', Cuenta: cuenta});
+            }
+            ).error(function (error) {});
+
+        } else if (req.user.rol === "SECRETARIA") {
+            res.render('secretaria', {title: 'Pagina', ocultar: 'true', session: false});
+            
+        } else if (req.user.rol === "ODONTOLOGO") {
+            res.render('index', {title: 'Pagina', session: false});
+        }
 
     }
-    cerrar_sesion(req, res) {        
-        req.session.destroy();        
+    cerrar_sesion(req, res) {
+        req.session.destroy();
         res.redirect('/');
     }
 
