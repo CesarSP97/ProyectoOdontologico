@@ -11,8 +11,24 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <link rel="stylesheet" href="assets/css/main.css" />
-    </head>
+        <script>
+        function Historia(txt) {
+            $.ajax({
+            url: '/Diagnostico/' + txt,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function (data, textStatus, jqXHR) {
 
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                    }
+            });
+            }
+        </script>
+    </head>
+    
     <body class="is-preload">
         <div id="page-wrapper">
 
@@ -27,11 +43,19 @@
                             <h1><a id="logo">Diagnostico<em></em></a></h1>
                         </div>
                         <!-- Main -->
+                        Historia Clinica
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                            <input id="historial" name="historial" type="text" class="form-control" value="{{Historia.n_historia}}" readonly="">
+                            </div>
+                        Diagnostico
                         <div>
                             <textarea  id="diagnostico" name="diagnostico" maxlength="600" rows="15" cols="25" placeholder="Escribe aqui..."></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Guardar" class="btn float-right login_btn" style="float: right">
+                            <input type="submit" value="Guardar" onclick="Historia({{Historia.n_historia}});" class="btn float-right login_btn" style="float: right">
                         </div>
                     </form>
                 </div>
@@ -40,7 +64,7 @@
                 <div class="copyright">
                     <ul class="menu">
                         <li>&copy; UNL. Todos los derechos reservados</li>
-                        <li>Creado por</li>: <a href="http://www.unl.edu.ec/">UNL</a></li>
+                        <li>Creado por: <a href="http://www.unl.edu.ec/">UNL</a></li>
                     </ul>
                 </div>
 

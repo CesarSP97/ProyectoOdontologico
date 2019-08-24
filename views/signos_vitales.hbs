@@ -10,7 +10,7 @@
         <title>{{title}}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/main.css" />
+        
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <!-- Bootstrap -->
@@ -18,7 +18,22 @@
               crossorigin="anonymous">
         <!-- Plantilla -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
+        <script>
+            function Historia(txt) {
+            $.ajax({
+            url: '/D/' + txt,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    success: function (data, textStatus, jqXHR) {
 
+
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                    }
+            });
+            }
+        </script>
     </head>
 
     <body>
@@ -36,7 +51,13 @@
                             <div>
                                 <center><h1><b>Signos Vitales</b></h1></center>
                             </div>
-                            <input type="hidden" id="n_historia" value="{{hisID}}" >
+                            Historia Clinica
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                </div>
+                            <input id="historial" name="historial" type="text" class="form-control" value="{{Historia.n_historia}}" readonly="">
+                            </div>
                             Precion Arterial
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
@@ -70,7 +91,7 @@
                             </div>
 
                             <div class="form-group">
-                                <input type="submit" value="Guardar" class="btn float-right login_btn">
+                                <input type="submit" value="Guardar" onclick="Historia({{Historia.n_historia}});" class="btn float-right login_btn">
                             </div>
                         </form>
                 </section>
@@ -94,13 +115,7 @@
 
             </div>
 
-            <!-- Scripts -->
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/jquery.dropotron.min.js"></script>
-            <script src="assets/js/browser.min.js"></script>
-            <script src="assets/js/breakpoints.min.js"></script>
-            <script src="assets/js/util.js"></script>
-            <script src="assets/js/main.js"></script>
+            
         </div>   
     </body>
 

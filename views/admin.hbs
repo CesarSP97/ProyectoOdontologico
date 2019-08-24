@@ -21,54 +21,61 @@
 
         <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
         <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <!-- Plugin DataTable-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.css"/>
         <script>
-            function validacionRegistro() {
-                $.validator.addMethod("cedula", function (value, element) {
-                    return this.optional(element) || validarCedula(value);
-                }, "Ingrese una cedula valida ");
+function validacionRegistro() {
+    $.validator.addMethod("cedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Ingrese una cedula valida ");
 
-                $("#registrar").validate({
-                    rules: {
-                        nombre: {
-                            required: true
-                        },
-                        apellido: {
-                            required: true
-                        },
-                        cedula: {
-                            required: true,
-                            minlength: 10,
-                            maxlength: 10,
-                            number: true,
-                            cedula: true
-                        },
-                        correo: {
-                            required: true,
-                            email: true,
-                        },
-                        clave: {
-                            required: true
-                        }
-                    },
-                    messages: {
-                        nombres: {required: 'Este campo es obligatorio'},
-                        apellido: {required: 'Este campo es obligatorio'},
-                        cedula: {required: 'Este campo es obligatorio'},
-                        correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto'},
-                        clave: {required: 'Este campo es obligatorio'}
-                    }
-                });
+    $("#registrar").validate({
+        rules: {
+            nombre: {
+                required: true
+            },
+            apellido: {
+                required: true
+            },
+            cedula: {
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                number: true,
+                cedula: true
+            },
+            correo: {
+                required: true,
+                email: true,
+            },
+            clave: {
+                required: true
             }
-            $(document).ready(function () {
-                validacionRegistro();
-            });
+        },
+        messages: {
+            nombres: {required: 'Este campo es obligatorio'},
+            apellido: {required: 'Este campo es obligatorio'},
+            cedula: {required: 'Este campo es obligatorio'},
+            correo: {required: 'Este campo es obligatorio', email: 'El formato de email es incorrecto'},
+            clave: {required: 'Este campo es obligatorio'}
+        }
+    });
+}
+$(document).ready(function () {
+    validacionRegistro();
+    $('#tabla').DataTable({
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+});
         </script>
     </head>
     <body>
         <div class="table-responsive">
             <nav class="navbar navbar-light bg-light">
                 <a  class="btn btn-success"  href="#"  style="width: 100%; background-position: center; background: #0D7BFF;color: white" data-placement="top" data-toggle="modal" data-target="#Form2" onclick="">Registrar Usuarios</a>
-                
+
                 <br><br><label style="font-size: 120%;background-position: left">Buscar Usuarios</label><br><br>
                 <form class="form-inline" method="GET" action="/buscar/usuario">
                     <select id="opcion" name="opcion" class="btn  btn-md" style="background: #04B431"> 
@@ -92,20 +99,21 @@
                 <th>Cedula</th>
                 <th>Correo</th>
                 <th>Rol</th>
+                <th>Estado</th>
                 <th>Accion</th>
                 </thead>
                 <tbody>
-                    {{#each datos}}
+                    {{#each this.Cuenta as |Cuenta i| }}
                     <tr>
-                        <td>{{this.usuario.id}}</td>
-                        <td>{{this.usuario.nombre}}</td>
-                        <td>{{this.usuario.apellido}}</td>
-                        <td>{{this.usuario.cedula}}</td>
-                        <td>{{this.usuario.correo}}</td>
-                        <td>{{this.rol.nombre}}</td>
+                        <td>{{i}}</td>
+                        <td>{{Cuenta.nombre}}</td>
+                        <td>{{Cuenta.apellido}}</td>
+                        <td>{{Cuenta.cedula}}</td>
+                        <td>{{Cuenta.correo}}</td>
+                        <td>{{Cuenta.rol.nombre}}</td>
                         <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Activo</a> </td>
-                        <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a> </td>
-                        <td><a class="btn btn-success"  href="#"  style="background: #04B431" data-placement="top" data-toggle="modal" data-target="#Form2">Editar</a></td>
+                        <td><a class="btn btn-danger" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a> 
+                            <a class="btn btn-success"  href="#"  style="background: #04B431" data-placement="top" data-toggle="modal" data-target="#Form2">Editar</a></td>
                     </tr>
                     {{/each }}
             </table>
@@ -171,10 +179,13 @@
                                 showConfirmButton: false,
                                 timer: 2400
                             });
-                        };
+                        }
+                        ;
                     </script>
                 </div>
             </div>
         </div>
     </body>
 </html>
+<!-- DATA TABLE -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>

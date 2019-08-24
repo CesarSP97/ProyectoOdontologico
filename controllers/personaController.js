@@ -73,6 +73,10 @@ class PersonaController {
             res.redirect("/signos_vitales/"+encodeURI(req.body.n_historia));
         });
     }
+    
+    buscarPaciente(req,res){
+        
+    }
 
 }
 module.exports = PersonaController;
