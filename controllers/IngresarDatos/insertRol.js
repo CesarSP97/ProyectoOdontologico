@@ -3,6 +3,7 @@ var uuid = require('uuid');
 var Rol = models.rol;
 var Usuario = models.usuario;
 
+
 var insertRol = function () {
     Rol.findOrCreate({where: {nombre: 'ODONTOLOGO'},
         defaults: {id: '1'}});

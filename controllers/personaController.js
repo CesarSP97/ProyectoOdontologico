@@ -10,6 +10,14 @@ var Examen = models.examen_extraoral;
 var Diagnostico = models.diagnostico;
 class PersonaController {
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Visualizar ltabla de personas
+     */
     visualizar(req, res) {
 
         persona.findAll().then(function (lista) {
@@ -18,6 +26,14 @@ class PersonaController {
         });
     }
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof LIsta lso pacientes
+     */
     listarPacientes(req, res) {
         historia.findAll({include: {model: persona}}).then(function (lpersona) {
             if (lpersona) {
@@ -30,6 +46,15 @@ class PersonaController {
         });
     }
 
+
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Guarda datos de paciente
+     */
     guardarpaciente(req, res) {
         var persona = models.persona;
         var usuario = models.usuario;
@@ -76,6 +101,15 @@ class PersonaController {
         });
     }
 
+
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof busca paciente
+     */
     buscarPaciente(req, res) {
         var opcion = req.query.opcion;
         var texto = req.query.texto;
@@ -103,6 +137,14 @@ class PersonaController {
     }
     
     
+    
+     /**
+      *
+      *
+      * @param {string} req
+      * @param {string} res
+      * @memberof edita Paciente
+      */
      editarPaciente(req, res) {
         persona.update({
             

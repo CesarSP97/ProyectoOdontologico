@@ -3,6 +3,14 @@ var models = require('./../models/');
 var uuid = require('uuid');
 var Historia = models.historia_clinica;
 class SignosVitalesController {
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof LIsta los signos vitales
+     */
     listar(req, res) {
         var texto=req.params.texto;
         Historia.findOne({where:{n_historia:texto}}).then(function (historia) {
@@ -10,6 +18,14 @@ class SignosVitalesController {
            res.render('signos_vitales', {title: 'Signos Vitales',Historia:historia});
         });
     }
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Guarda los signos vitales
+     */
     guardarsignos(req, res) {
         
         var signos = models.signos_vitales;

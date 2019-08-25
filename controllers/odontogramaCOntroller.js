@@ -21,6 +21,14 @@ class  OdontogramaController {
 //
 //    }
 
+
+        /**
+         *
+         *
+         * @param {string} req
+         * @param {string} res
+         * @memberof Visualizacion del odontograma
+         */
         visualizarOdonto(req, res){
             res.redirect("/Diagnostico/"+req.body.historial);
         }

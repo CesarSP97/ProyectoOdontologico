@@ -6,6 +6,14 @@ var Persona = models.persona;
 var Cita = models.cita;
 var Secuencia = models.secuencia_tratamiento;
 class CitasController {
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof LIstar paciente
+     */
     listarPacientes(req, res) {
         Historia.findAll({include: {model: Persona}}).then(function (paciente) {
             if (paciente) {
@@ -18,6 +26,13 @@ class CitasController {
         });
     }
 
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof LIstar CItas
+     */
     listarCitas(req, res) {
         Cita.findAll({include: {model: Persona}}).then(function (cita) {
             if (cita) {
@@ -30,6 +45,14 @@ class CitasController {
         });
     }
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof guardar Citas
+     */
     guardarCitas(req, res) {
         Cita.create({
             detalle_costo: "0",
@@ -67,6 +90,14 @@ class CitasController {
         });
     }
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Pago de Citas
+     */
     pagoCitas(req, res) {
         Cita.update({
             estado: req.body.estado
@@ -81,6 +112,14 @@ class CitasController {
         });
     }
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Edicion de CItas
+     */
     editarCitas(req, res) {
         Cita.update({
             fecha: req.body.fecha,
@@ -98,6 +137,14 @@ class CitasController {
 
     ///////////////////////////////////////////////////////////////////////////
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Listar pago de citas
+     */
     listarPagoCitas(req, res) {
         Cita.findAll({include: {model: Persona}}).then(function (cita) {
             if (cita) {
@@ -110,6 +157,14 @@ class CitasController {
         });
     }
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Editar pago citas
+     */
     editarPagoCitas(req, res) {
         Cita.update({
             costo: req.body.costo,

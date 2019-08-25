@@ -6,6 +6,14 @@ var Persona = models.persona;
 var Cita = models.cita;
 var Secuencia = models.secuencia_tratamiento;
 class SecuenciaController {
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof LIsta la secuencia de tratamiento
+     */
     listarSecuencia(req, res) {
         var texto = req.params.texto;
 
@@ -18,6 +26,13 @@ class SecuenciaController {
     }
  
 
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Edita la secuencia de tratamiento
+     */
     editarSecuencia(req, res) {
         Secuencia.update({
             diagnostico: req.body.diagnostico,

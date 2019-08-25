@@ -4,6 +4,14 @@ var uuid = require('uuid');
 
 class UsuarioController {
 
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Guarda los usuarios
+     */
     guardar(req, res) {
 
         var usuario = models.usuario;

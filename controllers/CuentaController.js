@@ -5,6 +5,14 @@ var Usuario = models.usuario;
 var Rol = models.rol;
 class CuentaController {
     
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Redireccionamiento de ROl
+     */
     perfil(req, res) {
         if (req.user.rol === "ADMINISTRADOR") {
             Usuario.findAll({include: {model: Rol}}).then(function (cuenta) {
@@ -20,6 +28,15 @@ class CuentaController {
         }
 
     }
+
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Cerrar sesion
+     */
     cerrar_sesion(req, res) {
         req.session.destroy();
         res.redirect('/');

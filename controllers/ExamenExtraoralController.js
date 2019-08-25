@@ -3,6 +3,15 @@ var models = require('./../models/');
 var uuid = require('uuid');
 var Historia = models.historia_clinica;
 class ExamenExtraoralController {
+
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Listar examen
+     */
     listar(req, res) {
         var texto = req.params.texto;
         Historia.findOne({where: {n_historia: texto}}).then(function (historia) {
@@ -10,6 +19,15 @@ class ExamenExtraoralController {
             res.render('examen_extraoral', {title: 'Examen Extraoral', Historia: historia});
         });
     }
+
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof Guarda examen extraoral
+     */
     guardarexamen(req, res) {
         var examen = models.examen_extraoral;
         Historia.findOne({where: {n_historia: req.body.historial}}).then(function (historia) {
