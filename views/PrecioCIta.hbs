@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="/assets/css/main.css" />
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+        <!--=====================Validaciones=================================================================-->
+        <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
+        <!-- Plantilla -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous" />
+        <!-- Plugin DataTable-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.css"/>
+
+        <script>
+
+
+$(document).ready(function () {
+
+    $('#tabla').DataTable({
+        language: {
+            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+        }
+    });
+});
+        </script>
+    </head>
+
+    <body>
+
+        <div class="page-wrapper">
+            <nav id="nav">
+                <ul>
+                    <li><a href="/perfil" id="logo">Principal</a></li>
+                    <li>
+                        <a href="#">Nuevo Paciente</a>
+                        <ul>
+                            <li><a href="/DatosPersonales">Datos Personales</a></li>
+                            <li><a href="#">Examen Clinico</a>
+                                <ul>
+                                    <li><a href="/signos_vitales">Signos Vitales</a></li>
+                                    <li><a href="/examen_extraoral">Examen Extraoral</a></li>
+                                    <li><a href="/odontograma">Odontograma</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Diagnostico">Diagnostico</a></li>
+
+                        </ul>
+                    </li>
+                    <li><a href="/buscar">Buscar</a></li>
+                    <li><a href="/precio/citas">Costo Cita</a></li>
+                    <li><a href="/cerrar_sesion">Cerrar Sesion</a></li>
+                </ul>
+            </nav>
+            <br>
+            <div style="text-align: center"><center> <h2>Listado de Citas</h2> </center></div>
+
+
+            <nav class="navbar navbar-light bg-light">
+
+                <div class="table-responsive">
+                    <table id="tabla" class="table table-bordered" style="border: 2em">
+
+                        <thead style="font-size: 1.1em" class="table thead-dark">                                         
+
+                        <th>Paciente</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Costo</th>
+                        <th>Detalle de Costo</th>
+                        <th>Pago</th>
+                        <th>Accion</th>
+                        </thead>
+
+                        <tbody>
+                            {{#each this.Citas as |Citas i| }}
+                            <tr>
+
+                                <td>{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}</td>
+                                <td>{{Citas.fecha}}</td>
+                                <td>{{Citas.hora}}</td>
+                                <td>{{Citas.costo}}</td>
+                                <td>{{Citas.detalle_costo}}</td>
+                                {{#if Citas.estado}}
+                                <td><a id="{{i}}" class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Pagado</a> </td>
+                                {{else}}
+                                <td><a id="{{i}}" class="btn btn-default" href="#"  style="margin-left: 5%;background: #37c0fb" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >En Espera</a> </td>
+                                {{/if}}
+                                <td><a id="b{{i}}"class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form3" title="Editar" >Editar</a> </td>
+
+                            </tr>
+                        <script>
+                            $("#{{i}}").click(function () {
+                                $('#external').val("{{ Citas.externa_id}}");
+                                $('#estado').val("{{ Citas.estado}}");
+                                $('#paciente').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
+
+                            });
+                            $("#b{{i}}").click(function () {
+                                $('#external2').val("{{ Citas.externa_id}}");
+                                $('#fecha').val("{{ Citas.fecha}}");
+                                $('#hora').val("{{ Citas.hora}}");
+                                $('#costo').val("{{ Citas.costo}}");
+                                $('#detalle_costo').val("{{ Citas.detalle_costo}}");
+                                $('#paciente1').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
+
+                            });
+                        </script>
+                        {{/each }}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="Form3" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <center>
+                                <div class="modal-header" >
+                                    <h2 class="modal-title" style="margin-left: 25%">Edicion de Pagos de Citas</h2> 
+                                </div>
+                            </center>
+                            <div class="modal-body">
+                                <form action="/editar/costo/" id="registrar" method="POST">
+
+                                    <input type="hidden"  id="external2" name="external2"/>
+                                    DATOS DEL PACIENTE
+                                    <div class="form-group">
+                                        <label for="nombre">Paciente:</label>
+                                        <input type="text" class="form-control" id="paciente1" readonly>
+                                    </div>
+
+
+                                    DATOS DE PAGO DE LA CITA
+                                    <div class="form-group">
+                                        <label for="costo">Costo:</label>
+                                        <input type="text" class="form-control" id="costo"  name="costo">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="detalle_costo">Detalle Costo:</label>
+                                        <input type="text" class="form-control" id="detalle_costo"  name="detalle_costo" placeholder="Ingrese la Hora">
+                                    </div>
+
+                                    <div class="form-group" style="margin-left:  12%">
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
+                                            <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                                function guardado() {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        type: 'success',
+                                        title: 'Espere !',
+                                        showConfirmButton: false,
+                                        timer: 2400
+                                    });
+                                }
+                                ;
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+        <!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
+<!-- DATA TABLE -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.js"></script>
+

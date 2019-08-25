@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.UUID
         }
 
-    }, { freezeTableName: true });
+    }, {freezeTableName: true});
 
-    odontograma.associate = function(models) {
+    odontograma.associate = function (models) {
 
-        odontograma.belongsTo(models.historia_clinica, { foreignkey: 'id_historia_clinica' });
+        odontograma.belongsTo(models.historia_clinica, {foreignkey: 'id_historia_clinica'});
 
     };
 

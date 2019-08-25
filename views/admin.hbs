@@ -99,7 +99,6 @@
                 <th>Cedula</th>
                 <th>Correo</th>
                 <th>Rol</th>
-                <th>Estado</th>
                 <th>Accion</th>
                 </thead>
                 <tbody>
@@ -111,7 +110,6 @@
                         <td>{{Cuenta.cedula}}</td>
                         <td>{{Cuenta.correo}}</td>
                         <td>{{Cuenta.rol.nombre}}</td>
-                        <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Activo</a></td>
                         <td><a id="{{i}}" class="btn" href="#"  style="margin-left: 5%; background-color: #2A2C61; color: white"  data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a></td>
                         <script>
                             $("#{{i}}").click(function () {

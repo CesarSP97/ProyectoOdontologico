@@ -29,7 +29,7 @@
          next();
      } else {
          req.flash('error', 'Debes iniciar sesion primero!');
-         res.redirect('/');
+         res.redirect('/perfil');
      }
  };
  var admin = function(req, res, next) {
@@ -37,7 +37,7 @@
          next();
      } else {
          req.flash('error', 'No esta autorizado!');
-         res.redirect('/');
+         res.redirect('/perfil');
      }
  };
   var secre = function(req, res, next) {
@@ -45,7 +45,7 @@
          next();
      } else {
          req.flash('error', 'No esta autorizado!');
-         res.redirect('/');
+         res.redirect('/perfil');
      }
  };
   var odon = function(req, res, next) {
@@ -60,33 +60,28 @@
  
  router.get('/', function(req, res, next) {
      res.render('login', { title: 'Inicio de Sesion', ocultar: 'true' });
- });
- router.get('/Odontologia', auth, function(req, res, next) {
-     res.render('Odontologia', { title: 'Pagina Principal' });
- });
- 
+ }); 
 
- router.get('/DatosPersonales', odon,auth, Persona.visualizar);
+ router.get('/DatosPersonales',auth, odon, Persona.visualizar);
 
 
-
- router.get('/odontograma', auth, function(req, res, next) {
+ router.get('/odontograma', auth, odon, function(req, res, next) {
      res.render('Odontograma', { title: 'Odontograma', ocultar: 'true' });
  });
  
- router.get('/SecuenciaTratamiento', auth, function(req, res, next) {
-     res.render('secuenciaTratamiento', { title: 'Secuencia de Tratamiento'});
+ router.get('/SecuenciaTratamiento', auth, odon, function(req, res, next) {
+     res.render('secuenciaTratamiento', { title: 'Secuencia de Tratamiento', ocultar:'false'});
  });
- router.get('/signos_vitales/:texto', auth,Signos.listar);
+ router.get('/signos_vitales/:texto', auth, odon, Signos.listar);
  /*router.get('/signos_vitales', auth, function(req, res, next) {
      res.render('signos_vitales', { title: 'Signos Vitales'});
  });*/
 
- router.get('/examen_extraoral/:texto', auth,Examen.listar);
- router.get('/Diagnostico/:texto', auth,Diagnostico.listar);
+ router.get('/examen_extraoral/:texto', odon, auth,Examen.listar);
+ router.get('/Diagnostico/:texto', auth, odon, Diagnostico.listar);
 
 
- router.get('/buscar', auth, Persona.listarPacientes);
+ router.get('/buscar', auth, odon, Persona.listarPacientes);
 router.get('/buscar/paciente', auth, Persona.buscarPaciente);
 
 //router.get('/admin', function(req, res, next) {
@@ -107,12 +102,15 @@ router.get('/buscar/paciente', auth, Persona.buscarPaciente);
  router.post('/signos_vitales', auth, Signos.guardarsignos);
  router.post('/examen_extraoral', auth, Examen.guardarexamen);
  router.post('/diagnostico', auth, Diagnostico.guardarDiagnostico);
- router.get('/lista/pacientes/', auth,Citas.listarPacientes);
+ router.get('/lista/pacientes/', auth, secre,Citas.listarPacientes);
  router.post('/guardar/citas/', auth,Citas.guardarCitas);
-  router.post('/pago/citas/', auth,Citas.pagoCitas);
-  router.post('/editar/citas/', auth,Citas.editarCitas);
-router.get('/citas', auth,Citas.listarCitas);
-router.get('/Secuencia/:texto', auth,Secuencia.listarSecuencia);
-router.post('/editar/Secuencia/', auth,Secuencia.editarSecuencia);
+ router.post('/pago/citas/', auth,Citas.pagoCitas);
+ router.post('/editar/citas/', auth,Citas.editarCitas);
+ router.post('/editar/costo/', auth,Citas.editarPagoCitas);
+ router.post('/editar/paciente', auth,Persona.editarPaciente);
+ router.get('/citas', auth, secre, Citas.listarCitas);
+ router.get('/precio/citas', auth, odon, Citas.listarPagoCitas);
+ router.get('/Secuencia/:texto', auth,Secuencia.listarSecuencia);
+ router.post('/editar/Secuencia/', auth,Secuencia.editarSecuencia);
 
  module.exports = router;

@@ -81,102 +81,126 @@ $(document).ready(function () {
         </script>
     </head>
     <body>
-        <div class="table-responsive">
+        <div style="width: 100%; text-align: center">
+            <nav id="nav">
+                    <ul>
+                        <li><a href="/perfil" id="logo">Principal</a></li>
+                        <li>
+                            <a href="#">Nuevo Paciente</a>
+                            <ul>
+                                <li><a href="/DatosPersonales">Datos Personales</a></li>
+                                <li><a href="#">Examen Clinico</a>
+                                    <ul>
+                                        <li><a href="/signos_vitales">Signos Vitales</a></li>
+                                        <li><a href="/examen_extraoral">Examen Extraoral</a></li>
+                                        <li><a href="/odontograma">Odontograma</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Diagnostico">Diagnostico</a></li>
 
+                            </ul>
+                        </li>
+                        <li><a href="/buscar">Buscar</a></li>
+                        <li><a href="/precio/citas">Costo Cita</a></li>
+                        <li><a href="/cerrar_sesion">Cerrar Sesion</a></li>
+                    </ul>
+
+                </nav>
             <nav class="navbar navbar-light bg-light">
-                <a  class="btn btn-danger"  href="/cerrar_sesion"  style="width: 12%; background-position: center; color: white" >Cerrar Sesion</a>
-            </nav>
-            <center>
-                <br>
-                <label>Listado de Tratamientos</label>
-            </center>
-            <table id="tabla" class="table table-bordered thead-dark" style="color: #222">
-                <thead style="font-size: 20px" class="table thead-dark">                                         
-                <th>Nro.</th>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Diagnostico</th>
-                <th>Tratamiento Realizo</th>
-                <th>Accion</th>
-                </thead>
-                <tbody>
-                    {{#each this.Citas as |Citas i| }}
-                    <tr>
-                        <td>{{i}}</td>
-                        <td>{{Citas.fecha}}</td>
-                        <td>{{Citas.citum.persona.nombres}} {{Citas.citum.persona.Apellidos}}</td>
-                        <td>{{Citas.diagnostico}}</td>
-                        <td>{{Citas.tratamiento_realizado}}</td>
-                        <td><a id="{{i}}" class="btn" href="#"  style="margin-left: 5%; background-color: #2A2C61; color: white"  data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a></td>
-                <script>
-                    $("#{{i}}").click(function () {
-                        $('#external').val("{{ Citas.external_id}}");
-                        $('#fecha').val("{{Citas.fecha}}");
-                        $('#diagnostico').val("{{Citas.diagnostico}}");
-                        $('#tratamiento').val("{{Citas.tratamiento_realizado}}");
-                        $('#paciente').val("{{Citas.citum.persona.nombres}} {{Citas.citum.persona.Apellidos}}");
-                        $('#paciente_id').val("{{Citas.citum.persona.id}}");
-                    });
-                </script>
-                </tr>
-                {{/each }}
-            </table>
-        </div>
-        <div id="Form2" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
+                
+                <div class="table-responsive">
                     <center>
-                        <div class="modal-header" >
-                            <h2 class="modal-title" style="margin-left: 15%">Registro de Usuarios</h2> 
-                        </div>
+                        <br>
+                        <label>Listado de Tratamientos</label>
                     </center>
-                    <div class="modal-body">
-                        <form action="/editar/Secuencia/" id="registrar" method="POST">
-
-                            <input type="hidden"  id="external" name="external"/>
-                            <input type="hidden"  id="paciente_id" name="paciente_id"/>
-                            <center>DATOS TRATAMIENTO</center>
-                            <div class="form-group">
-                                <label for="nombre">Paciente:</label>
-                                <input type="text" class="form-control" id="paciente" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="apellido">Fecha:</label>
-                                <input type="date" class="form-control" id="fecha" readonly>
-                            </div>
-                           
-                            <div class="form-group">
-                                <label for="correo">Diagnostico</label>
-                                <textarea type="text" class="form-control" id="diagnostico"  name="diagnostico" placeholder="Ingrese su Correo Personal"></textarea>
-                            </div>
-                            <div class="form-group" >
-                                <label for="clave">Tratamiento:</label>
-                                <textarea type="text" class="form-control" id="tratamiento"  name="tratamiento" placeholder="Ingrese su Correo Personal"></textarea>
-                            </div>
-                            <div class="form-group" style="margin-left:  12%">
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
-                                    <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <script>
-                        function guardado() {
-                            Swal.fire({
-                                position: 'top-end',
-                                type: 'success',
-                                title: 'Espere !',
-                                showConfirmButton: false,
-                                timer: 2400
+                    <table id="tabla" class="table table-bordered thead-dark" style="color: #222">
+                        <thead style="font-size: 20px" class="table thead-dark">                                         
+                        <th>Nro.</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Diagnostico</th>
+                        <th>Tratamiento Realizo</th>
+                        <th>Accion</th>
+                        </thead>
+                        <tbody>
+                            {{#each this.Citas as |Citas i| }}
+                            <tr>
+                                <td>{{i}}</td>
+                                <td>{{Citas.fecha}}</td>
+                                <td>{{Citas.citum.persona.nombres}} {{Citas.citum.persona.Apellidos}}</td>
+                                <td>{{Citas.diagnostico}}</td>
+                                <td>{{Citas.tratamiento_realizado}}</td>
+                                <td><a id="{{i}}" class="btn" href="#"  style="margin-left: 5%; background-color: #2A2C61; color: white"  data-placement="top" data-toggle="modal" data-target="#Form2" title="Editar" >Editar</a></td>
+                        <script>
+                            $("#{{i}}").click(function () {
+                                $('#external').val("{{ Citas.external_id}}");
+                                $('#fecha').val("{{Citas.fecha}}");
+                                $('#diagnostico').val("{{Citas.diagnostico}}");
+                                $('#tratamiento').val("{{Citas.tratamiento_realizado}}");
+                                $('#paciente').val("{{Citas.citum.persona.nombres}} {{Citas.citum.persona.Apellidos}}");
+                                $('#paciente_id').val("{{Citas.citum.persona.id}}");
                             });
-                        }
-                        ;
-                    </script>
+                        </script>
+                        </tr>
+                        {{/each }}
+                    </table>
                 </div>
-            </div>
+                <div id="Form2" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <center>
+                                <div class="modal-header" >
+                                    <h2 class="modal-title" style="margin-left: 15%">Registro de Usuarios</h2> 
+                                </div>
+                            </center>
+                            <div class="modal-body">
+                                <form action="/editar/Secuencia/" id="registrar" method="POST">
+
+                                    <input type="hidden"  id="external" name="external"/>
+                                    <input type="hidden"  id="paciente_id" name="paciente_id"/>
+                                    <center>DATOS TRATAMIENTO</center>
+                                    <div class="form-group">
+                                        <label for="nombre">Paciente:</label>
+                                        <input type="text" class="form-control" id="paciente" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="apellido">Fecha:</label>
+                                        <input type="date" class="form-control" id="fecha" readonly>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="correo">Diagnostico</label>
+                                        <textarea type="text" class="form-control" id="diagnostico"  name="diagnostico" placeholder="Ingrese su Correo Personal"></textarea>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label for="clave">Tratamiento:</label>
+                                        <textarea type="text" class="form-control" id="tratamiento"  name="tratamiento" placeholder="Ingrese su Correo Personal"></textarea>
+                                    </div>
+                                    <div class="form-group" style="margin-left:  12%">
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
+                                            <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                                function guardado() {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        type: 'success',
+                                        title: 'Espere !',
+                                        showConfirmButton: false,
+                                        timer: 2400
+                                    });
+                                }
+                                ;
+                            </script>
+                        </div>
+                    </div>
+                </div>
         </div>
     </body>
 </html>

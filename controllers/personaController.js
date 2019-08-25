@@ -16,7 +16,6 @@ class PersonaController {
             var index = 'HIS-' + (lista.length + 1);
             res.render('DatosPersonales', {title: 'Datos Personales', nro: index});
         });
-
     }
 
     listarPacientes(req, res) {
@@ -36,7 +35,6 @@ class PersonaController {
         var usuario = models.usuario;
 
         var datosP = {
-
             nombres: req.body.nombres,
             Apellidos: req.body.apellidos,
             edad: req.body.edad,
@@ -74,7 +72,6 @@ class PersonaController {
         };
         console.log(datosP);
         persona.create(datosP, {include: {model: models.historia_clinica, as: 'historia_clinica'}}).then(function (newperona) {
-
             res.redirect("/signos_vitales/" + encodeURI(req.body.n_historia));
         });
     }
@@ -103,6 +100,26 @@ class PersonaController {
                 res.redirect('/buscar');
             });
         }
+    }
+    
+    
+     editarPaciente(req, res) {
+        persona.update({
+            
+            nombres: req.body.nombres,
+            Apellidos: req.body.Apellidos,
+            telefono: req.body.telefono,
+            correo: req.body.correo
+            
+        }, {where: {external_id: req.body.external}}).then(function (updateSecuencia, created) {
+            if (updateSecuencia) {
+                req.flash('info', 'Modificacion exitosa');
+                res.redirect('/buscar');
+            }
+        }).catch(function (err) {
+            req.flash('error', 'Hubo un error');
+            res.redirect('/error');
+        });
     }
 
 }

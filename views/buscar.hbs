@@ -12,7 +12,10 @@ and open the template in the editor.
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <link rel="stylesheet" href="/assets/css/main.css" />
         <!-- Bootstrap -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
         <!--=====================Validaciones=================================================================-->
         <script language="javascript" type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/jquery.validate.min.js"></script>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
@@ -51,7 +54,6 @@ and open the template in the editor.
                     <th>Edad</th>
                     <th>Telefono</th>
                     <th>Correo</th>
-                    <th>Estado</th>
                     <th>Acciones</th>
                     </thead>
 
@@ -63,14 +65,90 @@ and open the template in the editor.
                             <td>{{Paciente.persona.edad}}</td>
                             <td>{{Paciente.persona.telefono}}</td>
                             <td>{{Paciente.persona.correo}}</td>
-                            <td><a class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Activo</a> </td>
-                            <td><a class="btn btn-info" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >Editar</a> 
+                            <td><a id="b{{i}}" class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form1" >Editar</a> 
                                 <a href="/Secuencia/{{Paciente.persona.id}}"  class="btn btn-default" style="margin-left: 5%;background: #a6e1ec"  >Secuencia Tratamiento</a> </td>
 
                         </tr>
 
                     </tbody>
                 </table>
+
+                <script>
+                    $("#b{{i}}").click(function () {
+                        $('#external').val("{{ Paciente.persona.external_id}}");
+                        $('#n_historia').val("{{Paciente.n_historia}}");
+                        $('#nombres').val("{{ Paciente.persona.nombres}}");
+                        //$('#correo').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
+                        $('#Apellidos').val("{{ Paciente.persona.Apellidos}}");
+                        $('#telefono').val("{{ Paciente.persona.telefono}}");
+                        $('#correo').val("{{Paciente.persona.correo}}");
+                    });
+                </script>
+                
+                
+                <div id="Form1" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <center>
+                                <div class="modal-header" >
+                                    <h2 class="modal-title" style="margin-left: 25%">Edicion</h2> 
+                                </div>
+                            </center>
+                            <div class="modal-body">
+                                <form action="/editar/paciente" id="registrar" method="POST">
+
+                                    <input type="hidden"  id="external" name="external"/>
+                                    DATOS PERSONALES
+                                    <div class="form-group">
+                                        <label for="n_historia">Nro.Historia:</label>
+                                        <input type="text" class="form-control" id="n_historia" readonly>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="nombres">Nombres:</label>
+                                        <input type="text" class="form-control" id="nombres"  name="nombres">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Apellidos">Apellidos:</label>
+                                        <input type="text" class="form-control" id="Apellidos"  name="Apellidos">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="telefono">Telefono:</label>
+                                        <input type="text" class="form-control" id="telefono"  name="telefono">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="correo">Correo:</label>
+                                        <input type="text" class="form-control" id="correo"  name="correo">
+                                    </div>
+
+                                    <div class="form-group" style="margin-left:  12%">
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
+                                            <button type="button" class="btn btn-danger col-md-5"  data-dismiss="modal" >Cerrar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <script>
+                                function guardado() {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        type: 'success',
+                                        title: 'Espere !',
+                                        showConfirmButton: false,
+                                        timer: 2400
+                                    });
+                                }
+                                ;
+                            </script>
+                        </div>
+                    </div>
+                </div>
 
                 <center> <h2>Enfermedades</h2> </center>
 
