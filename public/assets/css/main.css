@@ -1987,7 +1987,7 @@ input, select, textarea {
 		}
 
 	footer {
-		margin: 0 0 3em 0;
+		margin: 0 0 0em 0;
 	}
 
 		footer > :last-child {
@@ -2524,7 +2524,7 @@ input, select, textarea {
 	}
 
 		#header h1 {
-			padding: 0 0 2.75em 0;
+			padding: 0 0 0em 0;
 			margin: 0;
 		}
 
@@ -2772,7 +2772,7 @@ input, select, textarea {
 			}
 
 		#footer .container {
-			margin-bottom: 4em;
+			margin-bottom: em;
 		}
 
 		#footer .icons {
@@ -2844,11 +2844,11 @@ input, select, textarea {
 		/* Header */
 
 			#header {
-				padding: 2em 0 0 0;
+				padding: 0em 0 0 0;
 			}
 
 				#header h1 {
-					padding: 0 0 1.75em 0;
+					padding: 0 0 0em 0;
 				}
 
 		/* Banner */

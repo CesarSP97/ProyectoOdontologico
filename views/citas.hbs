@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
         <title>{{title}}</title>
@@ -25,16 +21,14 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/b-1.5.4/b-colvis-1.5.4/b-flash-1.5.4/b-html5-1.5.4/b-print-1.5.4/datatables.min.css"/>
 
         <script>
+            $(document).ready(function () {
 
-
-$(document).ready(function () {
-
-    $('#tabla').DataTable({
-        language: {
-            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-        }
-    });
-});
+                $('#tabla').DataTable({
+                    language: {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                    }
+                });
+            });
         </script>
     </head>
 
@@ -51,14 +45,11 @@ $(document).ready(function () {
             <br>
             <div style="text-align: center"><center> <h2>Listado de Citas</h2> </center></div>
 
-
             <nav class="navbar navbar-light bg-light">
 
                 <div class="table-responsive">
                     <table id="tabla" class="table table-bordered" style="border: 2em">
-
-                        <thead style="font-size: 1.1em" class="table thead-dark">                                         
-
+                        <thead style="font-size: 1.1em" class="table thead-dark">   
                         <th>Paciente</th>
                         <th>Fecha</th>
                         <th>Hora</th>
@@ -71,7 +62,6 @@ $(document).ready(function () {
                         <tbody>
                             {{#each this.Citas as |Citas i| }}
                             <tr>
-
                                 <td>{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}</td>
                                 <td>{{Citas.fecha}}</td>
                                 <td>{{Citas.hora}}</td>
@@ -83,21 +73,18 @@ $(document).ready(function () {
                                 <td><a id="{{i}}" class="btn btn-default" href="#"  style="margin-left: 5%;background: #37c0fb" data-placement="top" data-toggle="modal" data-target="#Form" title="Editar" >En Espera</a> </td>
                                 {{/if}}
                                 <td><a id="b{{i}}"class="btn btn-success" href="#"  style="margin-left: 5%" data-placement="top" data-toggle="modal" data-target="#Form1" title="Editar" >Editar</a> </td>
-
                             </tr>
                         <script>
                             $("#{{i}}").click(function () {
                                 $('#external').val("{{ Citas.externa_id}}");
                                 $('#estado').val("{{ Citas.estado}}");
                                 $('#paciente').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
-
                             });
                             $("#b{{i}}").click(function () {
                                 $('#external1').val("{{ Citas.externa_id}}");
                                 $('#fecha').val("{{ Citas.fecha}}");
                                 $('#hora').val("{{ Citas.hora}}");
                                 $('#paciente1').val("{{Citas.persona.nombres}} {{Citas.persona.Apellidos}}");
-
                             });
                         </script>
                         {{/each }}
@@ -116,7 +103,7 @@ $(document).ready(function () {
                             </center>
                             <div class="modal-body">
                                 <form action="/pago/citas/" id="registrar" method="POST">
-
+                                    
                                     <input type="hidden"  id="external" name="external"/>                                  
                                     <div class="form-group">
                                         <label for="nombre">Paciente:</label>
@@ -130,8 +117,7 @@ $(document).ready(function () {
                                             <option value="false">En Espera</option>
                                         </select>
                                     </div>
-
-
+                                    
                                     <div class="form-group" style="margin-left:  12%">
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
@@ -149,8 +135,7 @@ $(document).ready(function () {
                                         showConfirmButton: false,
                                         timer: 2400
                                     });
-                                }
-                                ;
+                                };
                             </script>
                         </div>
                     </div>
@@ -162,7 +147,7 @@ $(document).ready(function () {
                         <div class="modal-content">
                             <center>
                                 <div class="modal-header" >
-                                    <h2 class="modal-title" style="margin-left: 25%">Edicio de Citas</h2> 
+                                    <h2 class="modal-title" style="margin-left: 25%">Edicion de Citas</h2> 
                                 </div>
                             </center>
                             <div class="modal-body">
@@ -174,7 +159,7 @@ $(document).ready(function () {
                                         <label for="nombre">Paciente:</label>
                                         <input type="text" class="form-control" id="paciente1" readonly>
                                     </div>
-                                   
+
 
                                     DATOS DE LA CITA
                                     <div class="form-group">
@@ -185,7 +170,6 @@ $(document).ready(function () {
                                         <label for="hora">Hora:</label>
                                         <input type="time" class="form-control" id="hora"  name="hora" placeholder="Ingrese la Hora">
                                     </div>
-
                                     <div class="form-group" style="margin-left:  12%">
                                         <div class="modal-footer">
                                             <button type="submit" class="btn btn-success col-md-5" onclick="guardado()">Guardar</button>
@@ -203,14 +187,34 @@ $(document).ready(function () {
                                         showConfirmButton: false,
                                         timer: 2400
                                     });
-                                }
-                                ;
+                                };
                             </script>
                         </div>
                     </div>
                 </div>
             </nav>
+            <!-- Footer -->
+            <div id="footer" style="margin-top: 5%">
+                <div class="container">
+                    <div class="row">
+                    </div>
+                </div>
 
+                <!-- Icons -->
+                <ul class="icons">
+                    <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+                    <li><a href="#" class="icon fa-google"><span class="label">Google</span></a></li>
+                </ul>
+
+                <!-- Copyright -->
+                <div class="copyright">
+                    <ul class="menu">
+                        <li>&copy; UNL. Todos los derechos reservados</li>
+                        <li>Creado por: <a href="http://www.unl.edu.ec/">UNL</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- Scripts -->

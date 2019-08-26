@@ -1,9 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-        Arcana by HTML5 UP
-        html5up.net | @ajlkn
-        Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 
     <head>
@@ -53,32 +49,26 @@
         <div id="page-wrapper">
 
             <!-- Header -->
-            <div id="header">
+            <div>
 
                 <!-- Logo -->
-                <h1><a id="logo"><em>HISTORIA CLINICA</em></a></h1>
+                <h1 style="text-align: center"><a><em>HISTORIA CLINICA</em></a></h1>
                 <!-- Main -->
                 <section class="wrapper style1">
                     <div class="container">
                         <form id="form_registro" name="form_registro" style="color: #333; text-align: left" action="/DatosPersonales" method="POST">
                             <div id="error"> </div>
 
-                            <div style="padding: 1%; float: left; width: 45%; text-align: justify;" class="input-group form-group"><h2>Numero de Historia: </h2>
+                            <div style="padding: 1%; float: left; width: 25%; text-align: justify;" class="input-group form-group"><h2>Historia: </h2>
                                 <input id="n_historia" name="n_historia" type="text" class="form-control" value="{{nro}}" readonly>
-                                <!--<input id="f_actual" name="f_actual" type="date" class="form-control" readonly>-->
                             </div>
 
-                            <div style="padding: 1%; float: left; width: 45%; text-align: justify;" class="input-group form-group"><h2>Fecha: </h2> 
-                                <!--<input id="n_historia" name="n_historia" type="text" class="form-control" readonly>-->
+                            <div style="padding: 1%; float: right; width: 37%; text-align: justify;" class="input-group form-group"><h2>Fecha: </h2> 
                                 <input id="f_actual" name="f_actual" type="date" class="form-control" readonly>
                             </div>
 
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <div>
-                                <center><h1><b>Datos Personales</b></h1></center>
+                            <div style="padding-top:8%; text-align: center">
+                                <h1><b>Datos Personales</b></h1>
 
                             </div>
                             Nombres
@@ -96,7 +86,6 @@
                                 </div>
                                 <input id="apellidos" name="apellidos" type="text" class="form-control" placeholder="Apellidos">
                             </div>
-
 
                             Genero
                             <div class="input-group form-group">
@@ -182,8 +171,8 @@
                                        placeholder="Enferemedad Padecida">
                             </div>
 
-                            <div>
-                                <center><h1><b>Antecedenter Personales y Familiares</b></h1></center>
+                            <div style="padding: 1%; text-align: center">
+                                <h1><b>Antecedentes Personales y Familiares</b></h1>
                             </div>
 
                             Alergias al Antibiotico
@@ -290,24 +279,27 @@
                             </div>
                         </form>
                 </section>
-
-                <!-- Footer -->
-                <div id="footer">
+                <div id="footer" style="margin-top: 5%">
                     <div class="container">
-                        <div class="row"></div>
+                        <div class="row">
+                        </div>
                     </div>
 
+                    <!-- Icons -->
+                    <ul class="icons">
+                        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                        <li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+                        <li><a href="#" class="icon fa-google"><span class="label">Google</span></a></li>
+                    </ul>
 
                     <!-- Copyright -->
                     <div class="copyright">
                         <ul class="menu">
-                            <li>&copy; Untitled. All rights reserved</li>
-                            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-                        </ul> 
+                            <li>&copy; UNL. Todos los derechos reservados</li>
+                            <li>Creado por: <a href="http://www.unl.edu.ec/">UNL</a></li>
+                        </ul>
                     </div>
-
                 </div>
-
             </div>
 
             <!-- Scripts -->

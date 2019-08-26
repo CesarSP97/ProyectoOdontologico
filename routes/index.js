@@ -1,6 +1,6 @@
  var express = require('express');
  var router = express.Router();
- var usuario = require('../controllers/usuario_controller');
+ var usuario = require('../controllers/usuarioController');
  var Usuario = new usuario();
  var persona = require('../controllers/personaController');
  var Persona = new persona();
