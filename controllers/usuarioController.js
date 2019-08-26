@@ -4,7 +4,6 @@ var uuid = require('uuid');
 
 class UsuarioController {
 
-
     /**
      *
      *
@@ -13,7 +12,6 @@ class UsuarioController {
      * @memberof Guarda los usuarios
      */
     guardar(req, res) {
-
         var usuario = models.usuario;
         if (req.body.external === "0") {
             var datos = {
@@ -24,10 +22,7 @@ class UsuarioController {
                 clave: req.body.clave,
                 externa_id: uuid.v4(),
                 rolId: req.body.rol
-
             };
-            console.log(datos);
-
             usuario.create(datos).then(function (newcuenta) {
                 if (newcuenta) {
                     var millisecondsToWait = 2500;

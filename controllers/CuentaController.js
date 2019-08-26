@@ -4,7 +4,6 @@ var passport = require('passport');
 var Usuario = models.usuario;
 var Rol = models.rol;
 class CuentaController {
-    
 
     /**
      *
@@ -17,18 +16,14 @@ class CuentaController {
         if (req.user.rol === "ADMINISTRADOR") {
             Usuario.findAll({include: {model: Rol}}).then(function (cuenta) {
                 res.render('admin', {title: 'Administrador', ocultar: 'true', Cuenta: cuenta});
-            }
-            ).error(function (error) {});
-
+            }).error(function (error) {
+            });
         } else if (req.user.rol === "SECRETARIA") {
-            res.render('secretaria', {title: 'Pagina', ocultar: 'true', session: false,usuario:req.user.nombre,rol:req.user.rol});
-            
+            res.render('secretaria', {title: 'Pagina', ocultar: 'true', session: false, usuario: req.user.nombre, rol: req.user.rol});
         } else if (req.user.rol === "ODONTOLOGO") {
-            res.render('index', {title: 'Pagina', session: false,usuario:req.user.nombre,rol:req.user.rol});
+            res.render('index', {title: 'Pagina', session: false, usuario: req.user.nombre, rol: req.user.rol});
         }
-
     }
-
 
     /**
      *

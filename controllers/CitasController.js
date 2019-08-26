@@ -18,7 +18,6 @@ class CitasController {
         Historia.findAll({include: {model: Persona}}).then(function (paciente) {
             if (paciente) {
                 res.render('Pacientes', {title: 'Pacientes', Paciente: paciente, ocultar: 'true'});
-
             }
         }).catch(function (err) {
             req.flash('error', 'Hubo un error');
@@ -36,7 +35,6 @@ class CitasController {
     listarCitas(req, res) {
         Cita.findAll({include: {model: Persona}}).then(function (cita) {
             if (cita) {
-
                 res.render('citas', {title: 'Citas', Citas: cita, ocultar: 'true'});
             }
         }).catch(function (err) {
@@ -44,7 +42,6 @@ class CitasController {
             res.redirect('/lista/pacientes/');
         });
     }
-
 
     /**
      *
@@ -55,7 +52,7 @@ class CitasController {
      */
     guardarCitas(req, res) {
         Cita.create({
-            detalle_costo: "0",
+            detalle_costo: "Ninguno",
             costo: "0",
             fecha: req.body.fecha,
             hora: req.body.hora,
@@ -67,29 +64,25 @@ class CitasController {
             if (newCita) {
                 Secuencia.create({
                     fecha: req.body.fecha,
-                    diagnostico: "0",
-                    tratamiento_realizado: "0",
+                    diagnostico: "Ninguno",
+                    tratamiento_realizado: "Ninguno",
                     external_id: uuid.v4(),
                     citumId: newCita.id
-
                 }).then(function (newSecuencia, created) {
                     if (newSecuencia) {
                         req.flash('info', 'exito');
                         res.redirect('/citas');
-
                     }
                 }).catch(function (err) {
                     req.flash('error', 'Hubo un error');
                     res.redirect('/lista/pacientes/');
                 });
-
             }
         }).catch(function (err) {
             req.flash('error', 'Hubo un error');
             res.redirect('/lista/pacientes/');
         });
     }
-
 
     /**
      *
@@ -111,7 +104,6 @@ class CitasController {
             res.redirect('/citas');
         });
     }
-
 
     /**
      *
@@ -135,9 +127,6 @@ class CitasController {
         });
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-
-
     /**
      *
      *
@@ -148,7 +137,6 @@ class CitasController {
     listarPagoCitas(req, res) {
         Cita.findAll({include: {model: Persona}}).then(function (cita) {
             if (cita) {
-
                 res.render('PrecioCIta', {title: 'Precio de Citas', Citas: cita, ocultar: 'true'});
             }
         }).catch(function (err) {
@@ -156,7 +144,6 @@ class CitasController {
             res.redirect('/precio/citas');
         });
     }
-
 
     /**
      *

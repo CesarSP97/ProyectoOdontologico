@@ -16,15 +16,12 @@ class SecuenciaController {
      */
     listarSecuencia(req, res) {
         var texto = req.params.texto;
-
         Secuencia.findAll({include: {model: Cita, include: {model: Persona, where: {id: texto}}}}).then(function (cita) {
             if (cita) {
-                //res.send(cita);
                 res.render('secuenciaTratamiento', {title: 'Secuencia', Citas: cita, ocultar: 'true'});
             }
         });
     }
- 
 
     /**
      *
@@ -37,16 +34,15 @@ class SecuenciaController {
         Secuencia.update({
             diagnostico: req.body.diagnostico,
             tratamiento_realizado: req.body.tratamiento
-        }, {where: {external_id: req.body.external},include:{model: Cita}}).then(function (updateSecuencia, created) {
+        }, {where: {external_id: req.body.external}, include: {model: Cita}}).then(function (updateSecuencia, created) {
             if (updateSecuencia) {
                 req.flash('info', ' exitoso');
-                res.redirect('/Secuencia/'+req.body.paciente_id);
+                res.redirect('/Secuencia/' + req.body.paciente_id);
             }
         }).catch(function (err) {
             req.flash('error', 'Hubo un error');
             res.redirect('/buscar');
         });
     }
-
 }
 module.exports = SecuenciaController;

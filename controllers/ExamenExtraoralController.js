@@ -4,7 +4,6 @@ var uuid = require('uuid');
 var Historia = models.historia_clinica;
 class ExamenExtraoralController {
 
-
     /**
      *
      *
@@ -15,11 +14,9 @@ class ExamenExtraoralController {
     listar(req, res) {
         var texto = req.params.texto;
         Historia.findOne({where: {n_historia: texto}}).then(function (historia) {
-            //res.send(historia);
             res.render('examen_extraoral', {title: 'Examen Extraoral', Historia: historia});
         });
     }
-
 
     /**
      *
@@ -31,9 +28,7 @@ class ExamenExtraoralController {
     guardarexamen(req, res) {
         var examen = models.examen_extraoral;
         Historia.findOne({where: {n_historia: req.body.historial}}).then(function (historia) {
-            //res.send(historia);
             var datosex = {
-
                 labios: req.body.labios,
                 mejillas: req.body.mejillas,
                 maxilar_superior: req.body.m_superior,
@@ -50,13 +45,10 @@ class ExamenExtraoralController {
                 historiaClinicaId: historia.id
             };
             examen.create(datosex).then(function (exa) {
-                console.log("Bien Henao");
-                res.redirect("/Diagnostico/"+req.body.historial);
+                res.redirect("/Diagnostico/" + req.body.historial);
             });
         });
-
     }
-
 }
 module.exports = ExamenExtraoralController;
 

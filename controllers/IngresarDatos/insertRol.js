@@ -17,33 +17,33 @@ var insertRol = function () {
     Usuario.findOrCreate({where: {rolId: '3'},
         defaults: {
             id: '1',
-            nombre: 'Admin',
-            apellido: 'strador',
+            nombre: 'Administrador',
+            apellido: 'Principal',
             cedula: '9999999999',
             correo: 'admin@hotmail.com',
-            clave: 'admin',
+            clave: '1234',
             externa_id: uuid.v4()
         }});
     
     Usuario.findOrCreate({where: {rolId: '2'},
         defaults: {
             id: '2',
-            nombre: 'Secre',
-            apellido: 'taria',
+            nombre: 'Secretario',
+            apellido: 'Principal',
             cedula: '2222222222',
             correo: 'secre@hotmail.com',
-            clave: 'secre',
+            clave: '1234',
             externa_id: uuid.v4()
         }});
     
     Usuario.findOrCreate({where: {rolId: '1'},
         defaults: {
             id: '3',
-            nombre: 'Odon',
-            apellido: 'tologo',
+            nombre: 'Odontologo',
+            apellido: 'principal',
             cedula: '4444444444',
             correo: 'odon@hotmail.com',
-            clave: 'odon',
+            clave: '1234',
             externa_id: uuid.v4()
         }});
 };

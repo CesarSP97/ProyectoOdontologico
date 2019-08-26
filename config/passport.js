@@ -13,14 +13,12 @@ module.exports = function(passport) {
 
     passport.deserializeUser(function(id, done) {
         Usuario.findOne({ where: { id: id },include:{model:Rol} }).then(function(cuenta) {
-            //   console.log(cuenta);
             if (cuenta) {
                 var userinfo = {
                     id: cuenta.id,
                     nombre: cuenta.nombre + " " + cuenta.apellido,
                     rol:cuenta.rol.nombre
                 };
-                  console.log(userinfo);
                 done(null, userinfo);
             } else {
                 done(cuenta.erros, null);
@@ -29,7 +27,7 @@ module.exports = function(passport) {
             console.log("ERROR:", err);
         });
     });
-    ////Inicio de Session
+    //Inicio de Session
     passport.use('local-signin', new LocalStrategy({
         usernameField: 'correo',
         passwordField: 'clave',

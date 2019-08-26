@@ -10,7 +10,6 @@ var Examen = models.examen_extraoral;
 var Diagnostico = models.diagnostico;
 class PersonaController {
 
-
     /**
      *
      *
@@ -19,13 +18,11 @@ class PersonaController {
      * @memberof Visualizar ltabla de personas
      */
     visualizar(req, res) {
-
         persona.findAll().then(function (lista) {
             var index = 'HIS-' + (lista.length + 1);
             res.render('DatosPersonales', {title: 'Datos Personales', nro: index});
         });
     }
-
 
     /**
      *
@@ -37,7 +34,6 @@ class PersonaController {
     listarPacientes(req, res) {
         historia.findAll({include: {model: persona}}).then(function (lpersona) {
             if (lpersona) {
-                console.log(lpersona);
                 res.render('buscar', {title: 'Buscar', listaP: lpersona});
             }
         }).catch(function (err) {
@@ -45,8 +41,6 @@ class PersonaController {
             res.redirect('/buscar');
         });
     }
-
-
 
     /**
      *
@@ -57,8 +51,6 @@ class PersonaController {
      */
     guardarpaciente(req, res) {
         var persona = models.persona;
-        var usuario = models.usuario;
-
         var datosP = {
             nombres: req.body.nombres,
             Apellidos: req.body.apellidos,
@@ -87,21 +79,16 @@ class PersonaController {
             otros: req.body.otros,
             external_id: uuid.v4(),
             usuarioId: req.session.passport.user,
-
             historia_clinica: {
                 n_historia: req.body.n_historia,
                 fecha_creacion: req.body.f_actual,
                 external_id: uuid.v4()
             }
-
         };
-        console.log(datosP);
         persona.create(datosP, {include: {model: models.historia_clinica, as: 'historia_clinica'}}).then(function (newperona) {
             res.redirect("/signos_vitales/" + encodeURI(req.body.n_historia));
         });
     }
-
-
 
     /**
      *
@@ -116,7 +103,6 @@ class PersonaController {
         if (opcion === 'Nhistoria') {
             historia.findOne({where: {n_historia: texto}, include: [{model: persona}, {model: Signos, as: "signos_vitales"}, {model: Examen, as: "examen_extraoral"}, {model: Diagnostico, as: "diagnostico"}]}).then(function (paciente) {
                 if (paciente) {
-                    //res.send(paciente);
                     res.render('buscar', {title: 'Buscar', Paciente: paciente});
                 }
             }).catch(function (err) {
@@ -124,9 +110,8 @@ class PersonaController {
                 res.redirect('/buscar');
             });
         } else if (opcion === 'apellidos') {
-            historia.findOne({ include: [{model: persona, where: {Apellidos: {[Op.like]: '%' + texto + '%'}}}, {model: Signos, as: "signos_vitales"}, {model: Examen, as: "examen_extraoral"}, {model: Diagnostico, as: "diagnostico"}]}).then(function (paciente) {
+            historia.findOne({include: [{model: persona, where: {Apellidos: {[Op.like]: '%' + texto + '%'}}}, {model: Signos, as: "signos_vitales"}, {model: Examen, as: "examen_extraoral"}, {model: Diagnostico, as: "diagnostico"}]}).then(function (paciente) {
                 if (paciente) {
-                    //res.send(paciente);
                     res.render('buscar', {title: 'Buscar', Paciente: paciente});
                 }
             }).catch(function (err) {
@@ -135,24 +120,20 @@ class PersonaController {
             });
         }
     }
-    
-    
-    
-     /**
-      *
-      *
-      * @param {string} req
-      * @param {string} res
-      * @memberof edita Paciente
-      */
-     editarPaciente(req, res) {
+
+    /**
+     *
+     *
+     * @param {string} req
+     * @param {string} res
+     * @memberof edita Paciente
+     */
+    editarPaciente(req, res) {
         persona.update({
-            
             nombres: req.body.nombres,
             Apellidos: req.body.Apellidos,
             telefono: req.body.telefono,
             correo: req.body.correo
-            
         }, {where: {external_id: req.body.external}}).then(function (updateSecuencia, created) {
             if (updateSecuencia) {
                 req.flash('info', 'Modificacion exitosa');
@@ -163,7 +144,6 @@ class PersonaController {
             res.redirect('/error');
         });
     }
-
 }
 module.exports = PersonaController;
 
