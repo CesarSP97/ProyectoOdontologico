@@ -3,3 +3,6 @@ description: Aplicativo web de uso exclusivo para odontologos.
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
+github :
+   zip_url : http://example.com/download.zip 
+  another_url : https://cesarsantin.github.io/ProyectoOdontologico/views/index.hbs/
