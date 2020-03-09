@@ -4,5 +4,5 @@ show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
 github :
-   zip_url : http://example.com/download.zip 
+   zip_url : https://cesarsantin.github.io/ProyectoOdontologico/views/index.hbs/
   another_url : https://cesarsantin.github.io/ProyectoOdontologico/views/index.hbs/
